@@ -1,0 +1,35 @@
+			<footer id="footer">
+                
+<section id="section-contacts">
+	<div class="contacts-item">
+		<img src="<?php echo g_get_file_bucket()?>/assets/icons/icon-phone.svg" alt="icon-phone" />
+		<a href=""><p>+55 (99) 12345-6789</p></a>
+	</div>
+	<div class="contacts-item">
+		<img src="<?php echo g_get_file_bucket()?>/assets/icons/icon-location.svg" alt="icon-loc" />
+		<a href="">
+			<p>
+				Departamento de Educação Física <br />
+				Jequiezinho, Jequié - BA
+			</p>
+		</a>
+	</div>
+	<div class="contacts-item">
+		<img src="<?php echo g_get_file_bucket()?>/assets/icons/icon-email.svg" alt="icon-mail" />
+		<a href=""><p>exemplo@exemplo.com</p></a>
+	</div>
+</section>
+
+<hr />
+
+<section id="section-copyright">
+	<p>Copyright 2025 © Todos os direitos reservados - Centro de Estudos em Gestão Pública</p>
+	<div id="section-images">
+		<img src="<?php echo g_get_file_bucket()?>/assets/images/logo-cegesp-name.png" alt="Logo CEGESP" />
+		<img src="<?php echo g_get_file_bucket()?>/assets/images/logo-uesb-name.png" alt="Logo UESB" />
+	</div>
+</section>
+
+            </footer>
+		</body>
+	</html>

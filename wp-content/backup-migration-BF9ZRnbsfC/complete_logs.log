@@ -1,0 +1,16 @@
+[2025-10-17 00:32:35] [LOG] Restoring site...
+[2025-10-17 00:48:46] [LOG] Site restored...
+[2025-10-17 00:48:46] [LOG] Process (migration) finished successfully via ajax.php
+[2025-10-17 12:46:05] [LOG] Criando backup
+[2025-10-17 12:46:05] [LOG] Encontrado56 arquivos para fazer o backup.
+[2025-10-17 12:46:07] [LOG] Novo backup criado e seu nome é:BM_2025-10-17_12_46_05_FdT4z0C5nevxoPkl.zip
+[2025-10-17 12:46:07] [LOG] Process (backup) finished successfully via ajax.php
+[2025-10-20 15:07:29] [ERROR] Front End Ajax Error START
+[2025-10-20 15:07:29] [ERROR] call = check-not-uploaded-backups
+[2025-10-20 15:07:29] [ERROR] 0_x = NetworkError when attempting to fetch resource.
+[2025-10-20 15:07:29] [ERROR] 1_x = check-not-uploaded-backups
+[2025-10-20 15:07:29] [ERROR] 2_action = backup_migration
+[2025-10-20 15:07:29] [ERROR] 2_token = bmi
+[2025-10-20 15:07:29] [ERROR] 2_nonce = 6d2760e9d8
+[2025-10-20 15:07:29] [ERROR] 2_f = check-not-uploaded-backups
+[2025-10-20 15:07:29] [ERROR] Front End Ajax Error END

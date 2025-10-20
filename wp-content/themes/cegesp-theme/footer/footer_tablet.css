@@ -1,0 +1,16 @@
+@media (max-width: 900px) {
+	/* REGRAS ESTRUTURAIS ***************************************************/
+	footer {
+		#section-contacts {
+			padding: 60px 15px;
+
+			justify-content: space-around;
+		}
+
+		#section-copyright {
+			p {
+				font-size: 12px;
+			}
+		}
+	}
+}

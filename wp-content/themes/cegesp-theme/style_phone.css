@@ -1,0 +1,49 @@
+@media (max-width: 600px) {
+
+	/* REGRAS ESTRUTURAIS ***************************************************/
+	main {
+		margin-top: 20vw;
+		padding-left: 3vw;
+		padding-right: 3vw;
+	}
+
+	/* REGRAS TEXTUAIS ***************************************************/
+
+	h1{
+		font-family: var(--font-roboto-condensed);
+		font-size: calc(var(--h1-text-size) * 0.25vw);
+		margin-bottom: 3vw;
+	}
+	h2{
+		font-family: var(--font-roboto-condensed);
+		font-size: calc(var(--h2-text-size) * 0.2vw);
+		margin-bottom: 3vw;
+	}
+	h3{
+		font-family: var(--font-roboto-condensed);
+		font-size: calc(var(--h3-text-size) * 0.2vw);
+		margin-bottom: 3vw;
+	}
+	p{
+		font-family: var(--font-roboto-condensed);
+		font-size: calc(var(--p-text-size) * 0.2vw);
+		margin-bottom: 3vw;
+		line-height: 5vw;
+		text-align: justify;
+		
+	}
+	hr {
+		height: 0.1vw;
+		margin: 0;
+	}
+	/* REGRAS ESTILÍSTICAS ***************************************************/
+	.separator-s{
+		height: 5vw;
+	}
+	.separator-m{
+		height: 10vw;
+	}
+	.separator-b{
+		height: 20vw;
+	}
+}

@@ -1,0 +1,123 @@
+<?php get_header();?>
+<main>
+			<h2>ACESSO AOS DOCUMENTOS OFICIAIS</h2>
+
+			<form id="infodadosForm" action="" method="post">
+				<!--Campo para Palavra-Chave-->
+				<div id="keyword" class="form-group">
+					<h3>Palavra-Chave:</h3>
+					<input type="text" id="keywordInput" name="keywordInput" value="Vacina" disabled />
+				</div>
+
+				<div class="form-group">
+					<h3>Esfera:</h3>
+					<select name="esfera" id="esfera" required>
+						<option value="f">Federal</option>
+						<option value="e">Estadual</option>
+						<option value="m">Municipal</option>
+					</select>
+				</div>
+
+				<!-- Jhon: Campos para Estadual e Municipal -->
+				<div id="ufGroup" class="form-group hidden">
+					<label for="uf">UF:</label>
+					<select name="uf" id="uf"></select>
+				</div>
+
+				<!-- Jhon: Campos específicos para Municipal -->
+				<div id="agrupamentoGroup" class="form-group hidden">
+					<h3>Agrupamento:</h3>
+					<div>
+						<input type="radio" name="agrupamento" id="pesquisaMunicipio" value="municipio" />
+						<label for="pesquisaMunicipio">Pesquisa por município</label>
+					</div>
+					<div>
+						<input type="radio" name="agrupamento" id="pesquisaTerritorio" value="territorio" />
+						<label for="pesquisaTerritorio">Pesquisa por território</label>
+					</div>
+				</div>
+
+				<div id="municipioGroup" class="form-group hidden">
+					<label for="municipio">Município:</label>
+					<select name="municipio" id="municipio">
+						<option value="jequie">Jequié</option>
+						<option value="conquista">Vitória da Conquista</option>
+						<option value="itagi">Itagi</option>
+					</select>
+				</div>
+
+				<div id="territorioGroup" class="form-group hidden">
+					<label for="territorio">Território:</label>
+					<select name="territorio" id="territorio">
+						<option value="ba">BA</option>
+						<option value="df">DF</option>
+						<option value="mg">MG</option>
+					</select>
+				</div>
+
+				<!-- Jhon: Agenda -->
+				<div class="form-group" id="agendaGroup">
+					<h3>Agenda</h3>
+					<div id="poderOptions">
+						<div>
+							<input type="radio" name="poder" id="executivo" value="executivo" required />
+							<label for="executivo">Poder Executivo</label>
+						</div>
+						<div>
+							<input type="radio" name="poder" id="legislativo" value="legislativo" />
+							<label for="legislativo">Poder Legislativo</label>
+						</div>
+						<div id="judiciarioOption">
+							<input type="radio" name="poder" id="judiciario" value="judiciario" />
+							<label for="judiciario">Poder Judiciário</label>
+						</div>
+					</div>
+					<!--<span id="erroPoder" class="mensagem-erro" style="color: red; display: none">Por favor, selecione um poder.</span>-->
+				</div>
+
+				<!-- Jhon: Documento -->
+				<div class="form-group">
+					<label for="documento">Tipo de documento:</label>
+					<select name="documento" id="documento">
+						<option value="loa">LOA</option>
+						<option value="ldo">LDO</option>
+						<option value="ppa">PPA</option>
+						<option value="termo_posse">Termo de Posse (Agenda retórica)</option>
+						<option value="decretos">Decretos</option>
+						<option value="plano_governo">Plano de governo</option>
+						<option value="msg_anual">Mensagem Anual</option>
+					</select>
+				</div>
+
+				<!-- Jhon: Período -->
+				<div class="form-group date-range">
+					<h3>Período</h3>
+					<div>
+						<label for="start-date">Ano de Início:</label>
+						<input
+							type="number"
+							id="start-year"
+							name="start-year"
+							min="1900"
+							max="2100"
+							placeholder="Ex: 2000"
+						/>
+					</div>
+					<div>
+						<label for="end-date">Ano Final:</label>
+						<input
+							type="number"
+							id="end-year"
+							name="end-year"
+							min="1900"
+							max="2100"
+							placeholder="Ex: 2025"
+						/>
+					</div>
+				</div>
+
+				<button type="submit" class="btn">Buscar</button>
+			</form>
+
+		</main>
+<?php get_template_part('footer/footer'); ?> <!-- obtem o footer dinamicamente, de outro arquivo -->

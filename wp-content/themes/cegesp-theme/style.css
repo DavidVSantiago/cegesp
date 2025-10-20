@@ -1,0 +1,82 @@
+/*
+Theme Name: cegesp
+Author: David Santiago
+Author URI: http://cegesp.algol.dev
+Description: Tema para o site cegesp
+Version: 1.0
+License: GNU General Public License v3 or later
+Text Domain: cegesp
+Domain Path: /languages
+*/
+
+/* REGRAS ESTRUTURAIS ***************************************************/
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	display: flex;
+	justify-content: center;
+	background-color: rgb(202, 200, 200);
+	scroll-behavior: smooth;
+}
+body {
+	min-height: 100vh;
+	width: 100%;
+	max-width: var(--max-width);
+	/* position: relative; para quê isso?? */
+	background-color: var(--color-white-default);
+}
+main {
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+/* REGRAS TEXTUAIS ***************************************************/
+h1{
+	font-family: var(--font-roboto);
+	font-size: calc(var(--h1-text-size) * 1px);
+	margin-bottom: 18px;
+}
+h2{
+	font-family: var(--font-roboto);
+	font-size: calc(var(--h2-text-size) * 1px);
+	margin-bottom: 18px;
+}
+h3{
+	font-family: var(--font-roboto);
+	font-size: calc(var(--h3-text-size) * 1px);
+	margin-bottom: 18px;
+}
+p{
+	font-family: var(--font-poppins);
+	font-size: calc(var(--p-text-size) * 1px);
+	margin-bottom: 18px;
+	color: var(--color-text);
+}
+a {
+	all: unset;
+	cursor: pointer;
+}
+hr {
+	width: 100%;
+	height: 1px;
+	background-color: var(--color-dark-blue);
+}
+
+/* REGRAS ESTILÍSTICAS ***************************************************/
+.separator-s{
+	height: 30px;
+}
+.separator-m{
+	height: 60px;
+}
+.separator-b{
+	height: 120px;
+}
