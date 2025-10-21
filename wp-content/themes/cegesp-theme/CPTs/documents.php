@@ -7,6 +7,8 @@ if(!class_exists('Documents_CPT')){
         # **************************************************************************************
         # ATRIBUTOS     
         # **************************************************************************************
+        private $database;
+
         private $palavra_chave_value;
         private $esfera_value;
         private $agenda_value;
@@ -14,43 +16,31 @@ if(!class_exists('Documents_CPT')){
         private $ano_value;
         private $file_url_value;
 
-        function get_palavra_chave_value() {
-            return 'saude';
-        }
+        # **************************************************************************************
+        # CONSTRUTOR     
+        # **************************************************************************************
 
-        function get_esfera_value() {
-            // Exemplo: return $wpdb->get_results("SELECT id, name FROM custom_spheres_table", ARRAY_A);
-            return 'Federal';
-        }
-        
-        function get_agenda_value() {
-            return 'poder_judiciario';
-        }
-
-        function get_tipo_doc_value() {
-            return 'ppa';
-        }
-
-        function get_ano_value() {
-            return '2006';
-        }
-
-        function get_file_url_value() {
-            return 'https://cegesp.b-cdn.net/assets/dumb.pdf';
-        }
-        
         function __construct(){
+            // instancia o Banco de Dados do CPT
+            require_once('database.php'); 
+            $this->database = new Database_CPT();
+            
             add_action('init',[$this,'create_documents_cpt']); # agenda a criação do CPT
+            add_action('init', [$this->database , 'create_custom_table']);
             add_action('add_meta_boxes',[$this,'create_meta_boxes']); # agenda a criação dos Metaboxes para o CPT
             add_action('save_post',[$this,'save_meta_boxes_data']); # para salvar os dados do metabox na tabela 'wp_postmeta'
+            // HOOK para a exclusão manual (ON DELETE CASCADE via PHP)
+            //add_action('before_delete_post', [$this, 'delete_custom_data']); 
+            // HOOK para adicionar o enctype="multipart/form-data" para upload
+            //add_action('post_edit_form_tag', [$this, 'add_upload_capability']);
 
             // Carregando as opções dinâmicas
-            $this->palavra_chave_value = strtolower(trim($this->get_palavra_chave_value()));
-            $this->esfera_value = strtolower(trim($this->get_esfera_value()));
-            $this->agenda_value = strtolower(trim($this->get_agenda_value()));
-            $this->tipo_doc_value  = strtolower(trim($this->get_tipo_doc_value()));
-            $this->ano_value  = strtolower(trim($this->get_ano_value()));
-            $this->file_url_value  = strtolower(trim($this->get_file_url_value()));
+            $this->palavra_chave_value = strtolower(trim($this->database->get_palavra_chave_value()));
+            $this->esfera_value = strtolower(trim($this->database->get_esfera_value()));
+            $this->agenda_value = strtolower(trim($this->database->get_agenda_value()));
+            $this->tipo_doc_value  = strtolower(trim($this->database->get_tipo_doc_value()));
+            $this->ano_value  = strtolower(trim($this->database->get_ano_value()));
+            $this->file_url_value  = strtolower(trim($this->database->get_file_url_value()));
         }
 
         # **************************************************************************************
@@ -96,6 +86,8 @@ if(!class_exists('Documents_CPT')){
                 'documents-meta-box', // identificador unico
                 'Dados do documento', // titulo do metabox
                 function($post){// callback de construção do layout da metabox
+                    $post_id = $post->ID;
+                    $data = $this->database->select_data($post_id); // carrega os dados do banco
                     require_once('views-metaboxes/view.documents-meta-box.php'); // o layout é definido em view (uma forma inteligente de fazer)
                 },
                 'documents', // tela onde aparece (neste caso a chave do cpt)
@@ -115,19 +107,29 @@ if(!class_exists('Documents_CPT')){
             if(!isset($_POST['action'])) return; # verifica se houve de fato submissão do formulário
             if($_POST['action']!='editpost') return; # verifica se a submissão foi um save de post
 
-            # obtém os valores dos metadados já existentes
-            // TODO fazer o select no banco para buscar os dados
-            
             # obtém os valores dos metadados novos, vindos do formulário
-            $new_palavra_chave_value = $_POST['document_palavra_chave'];
-            $new_esfera_value = $_POST['document_esfera'];
-            $new_agenda_value = $_POST['document_agenda'];
-            $new_tipo_doc_value = $_POST['document_tipo_doc'];
-            $new_ano_value = $_POST['document_ano'];
-            $file_name = $_POST['document_file'];
+            $new_palavra_chave_value = isset($_POST['document_palavra_chave']) ? sanitize_text_field($_POST['document_palavra_chave']) : '';
+            $new_esfera_value = isset($_POST['document_esfera']) ? sanitize_text_field($_POST['document_esfera']) : '';
+            $new_agenda_value = isset($_POST['document_agenda']) ? sanitize_text_field($_POST['document_agenda']) : '';
+            $new_tipo_doc_value = isset($_POST['document_tipo_doc']) ? sanitize_text_field($_POST['document_tipo_doc']) : '';
+            $new_ano_value = isset($_POST['document_ano']) ? sanitize_text_field($_POST['document_ano']) : '';
+            $file_name = isset($_POST['document_file']) ? sanitize_text_field($_POST['document_file']) : '';
             
-            // atualiza os dados no banco
-            //prepara a query linha a linha
+            // TODO lógica para inserir no bunny.net
+
+            // Preparar os dados para inserir na tabela
+            $data_to_save = array(
+                'post_id'       => $post_id,
+                'palavra_chave' => $new_palavra_chave_value,
+                'esfera'        => $new_esfera_value,
+                'agenda'        => $new_agenda_value,
+                'tipo_doc'      => $new_tipo_doc_value,
+                'ano'           => $new_ano_value,
+                'file_url'      => $file_name,
+            );
+
+            // verifica se o registro para o post ja existe na tabela
+            $this->database->update_data($post_id, $data_to_save);
             
             if($file_name!=''){ // se houve anexo de um novo arquivo
                 // acessa o recurso pela url e remove-o

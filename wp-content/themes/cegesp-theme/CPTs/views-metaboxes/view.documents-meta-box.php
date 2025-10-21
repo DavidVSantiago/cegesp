@@ -3,47 +3,14 @@
         die('Forbiden access!');
         exit();
     }
-    /** obtém os metadados do post com o id especificado */
-    // $toolsMeta_code = get_post_meta($post->ID,'toolsMeta_code',true);
     
-    /**
-     * FUNÇÕES PLACEHOLDER:
-     * No seu código real, você substituirá estas funções por aquelas que 
-     * consultam sua tabela customizada no banco de dados e retornam um array de 
-     * [value => label] ou [id => name].
-     */
-    function get_palavra_chave_value() {
-        return 'saude';
-    }
-
-    function get_esfera_value() {
-        // Exemplo: return $wpdb->get_results("SELECT id, name FROM custom_spheres_table", ARRAY_A);
-        return 'Federal';
-    }
-    
-    function get_agenda_value() {
-        return 'poder_judiciario';
-    }
-
-    function get_tipo_doc_value() {
-        return 'ppa';
-    }
-
-    function get_ano_value() {
-        return '2006';
-    }
-
-    function get_file_url_value() {
-        return 'https://cegesp.b-cdn.net/assets/dumb.pdf';
-    }
-    
-    // Carregando as opções dinâmicas
-    $palavra_chave_value = strtolower(trim(get_palavra_chave_value()));
-    $esfera_value = strtolower(trim(get_esfera_value()));
-    $agenda_value = strtolower(trim(get_agenda_value()));
-    $tipo_doc_value  = strtolower(trim(get_tipo_doc_value()));
-    $ano_value  = strtolower(trim(get_ano_value()));
-    $file_url_value  = strtolower(trim(get_file_url_value()));
+    // obtêm as opções dinâmicas carregadas do banco
+    $palavra_chave_value = strtolower(trim($data['palavra_chave']));
+    $esfera_value = strtolower(trim($data['esfera']));
+    $agenda_value = strtolower(trim($data['agenda']));
+    $tipo_doc_value  = strtolower(trim($data['tipo_doc']));
+    $ano_value  = strtolower(trim($data['ano']));
+    $file_url_value  = strtolower(trim($data['file_url']));
 ?>
 
 
