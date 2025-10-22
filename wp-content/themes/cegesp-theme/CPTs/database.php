@@ -34,6 +34,7 @@ if(!class_exists('Database_CPT')){
                 agenda varchar(255) NOT NULL,
                 tipo_doc varchar(255) NOT NULL,
                 ano int(4) NOT NULL,
+                file_id varchar(255) NOT NULL,
                 file_url text NOT NULL,
                 PRIMARY KEY (id),
                 KEY post_id_idx (post_id)
@@ -57,65 +58,57 @@ if(!class_exists('Database_CPT')){
                 // Se existe (edição de post), atualiza a linha
                 $wpdb->update(
                     $table_name,
-                    $data_to_save, 
+                    $data_to_save,
                     array('post_id' => $post_id),
-                    array('%s', '%s', '%s', '%s', '%s', '%d', '%s'), 
-                    array('%d') 
+                    array('%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s'),
+                    array('%d')
                 );
             } else {
                 // Se não existe (novo post), insere a linha
                 $wpdb->insert(
                     $table_name,
                     $data_to_save,
-                    array('%d', '%s', '%s', '%s', '%s', '%d', '%s')
+                    array('%d', '%s', '%s', '%s', '%s', '%d', '%s', '%s')
                 );
             }
         }
 
-        /* SELECT --------------------------------------------------------------------------- */ 
+        /* SELECT ALL --------------------------------------------------------------------------- */
         public function select_data($post_id){
             global $wpdb;
             $table_name = $this->table_name;
-
-            // 1. Prepara e executa a query SELECT
+            
+            // Prepara e executa a query SELECT
             // Usamos $wpdb->prepare para segurança e ARRAY_A para obter um array associativo
             $data = $wpdb->get_row(
                 $wpdb->prepare(
                     "SELECT * FROM $table_name WHERE post_id = %d",
                     $post_id
-                ), 
+                ),
                 ARRAY_A
             );
-
             // 2. Retorna os dados (se encontrados) ou um array vazio
             return $data ? $data : '';
         }
-
-        public function get_palavra_chave_value() {
-            return 'saude';
-        }
-
-        public function get_esfera_value() {
-            // Exemplo: return $wpdb->get_results("SELECT id, name FROM custom_spheres_table", ARRAY_A);
-            return 'Federal';
-        }
         
-        public function get_agenda_value() {
-            return 'poder_judiciario';
+        /* SELECT apenas 1 campo ---------------------------------------------------------------- */
+        public function select_field_data($post_id, $field_name){
+            global $wpdb;
+            $table_name = $this->table_name;
+            
+            // fields permitidos
+            $allowed_fields = ['palavra_chave', 'esfera', 'agenda', 'tipo_doc', 'ano', 'file_id', 'file_url']; 
+            if (!in_array($field_name, $allowed_fields)) return null; // abandona, caso seja recebido um campo não permitido
+
+            // Prepara e executa a query SELECT
+            $sql = $wpdb->prepare(
+                "SELECT `{$field_name}` FROM {$table_name} WHERE post_id = %d",
+                $post_id
+            );
+            $value = $wpdb->get_var($sql);
+
+            // 3. Retorna o valor ou null
+            return $value !== null ? (string) $value : null;
         }
-
-        public function get_tipo_doc_value() {
-            return 'ppa';
-        }
-
-        public function get_ano_value() {
-            return '2006';
-        }
-
-        public function get_file_url_value() {
-            return 'https://cegesp.b-cdn.net/assets/dumb.pdf';
-        }
-
-
     }
 }

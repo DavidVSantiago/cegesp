@@ -5,12 +5,12 @@
     }
     
     // obtêm as opções dinâmicas carregadas do banco
-    $palavra_chave_value = strtolower(trim($data['palavra_chave']));
-    $esfera_value = strtolower(trim($data['esfera']));
-    $agenda_value = strtolower(trim($data['agenda']));
-    $tipo_doc_value  = strtolower(trim($data['tipo_doc']));
-    $ano_value  = strtolower(trim($data['ano']));
-    $file_url_value  = strtolower(trim($data['file_url']));
+    $palavra_chave_value = ($data!=='') ? strtolower(trim($data['palavra_chave'])):'';
+    $esfera_value = ($data!=='') ? strtolower(trim($data['esfera'])):'';
+    $agenda_value = ($data!=='') ? strtolower(trim($data['agenda'])):'';
+    $tipo_doc_value  = ($data!=='') ? strtolower(trim($data['tipo_doc'])):'';
+    $ano_value  = ($data!=='') ? strtolower(trim($data['ano'])):'';
+    $file_url_value  = ($data!=='') ? strtolower(trim($data['file_url'])):'';
 ?>
 
 

@@ -97,61 +97,40 @@ if(!class_exists('Documents_CPT')){
 
         public function save_meta_boxes_data($post_id){
             /** CONDIÇÕES DE GUARDA! */
-            if(!isset($_POST['documentsMeta-nonce'])) return;
-            if(!wp_verify_nonce($_POST['documentsMeta-nonce'],'documentsMeta-nonce')) return;
-            if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-            if(!isset($_POST['post_type']) || $_POST['post_type'] !== 'documents') return;
-            if(!current_user_can('edit_page',$post_id)) return;
-            if(!current_user_can('edit_post',$post_id)) return;
-            if(!isset($_POST['action'])) return;
-            if($_POST['action']!='editpost') return;
+            if(!isset($_POST['documentsMeta-nonce'])) return; # se a submissão do form não trouxe o nonce, aborta!
+            if(!wp_verify_nonce($_POST['documentsMeta-nonce'],'documentsMeta-nonce')) return; # se o nonce não coincidir, aborta!
+            if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return; # se for salvamento automático, aborta!
+            if(!isset($_POST['post_type']) || $_POST['post_type'] !== 'documents') return; # se não for salvamento do CPT 'documents', aborta!
+            if(!current_user_can('edit_page',$post_id)) return; # se o usuário não possuir permissão para editar a página, aborta!
+            if(!current_user_can('edit_post',$post_id)) return; # se o usuário não possuir permissão para editar o post, aborta!
+            if(!isset($_POST['action'])) return; # verifica se houve de fato submissão do formulário
+            if($_POST['action']!='editpost') return; # verifica se a submissão foi um save de post
             
-            // ----------------------------------------------------------------------
-            // 1. OBTENÇÃO E DISTINÇÃO DO STATUS (CRIAÇÃO vs. ATUALIZAÇÃO)
-            // ----------------------------------------------------------------------
-            
-            // Tenta obter o registro existente para determinar o cenário e o file_id.
-            $existing_record = $this->database->select_data($post_id);
-            
-            // Se não há registro, é o primeiro salvamento (Criação).
-            $is_creation = empty($existing_record);
 
-            // Define o file_id e file_url iniciais.
-            if ($is_creation) {
-                // Na criação, o file_id será o post_id
-                $file_id = $post_id;
-                $file_url = ''; // Começa sem URL
-            } else {
-                // Na atualização, usa os valores existentes
-                $file_id = (int) $existing_record['file_id'];
-                $file_url = $existing_record['file_url'];
+            /** DISTINÇÃO CRUCIAL AQUI  - primeiro salvamento (criação) ou salvamentos posteriores (atualização)
+              * Verificia se existe um registro de doc no banco para o post (só não existe quando o doc é criado pela primeira vez) */
+            $file_id = $this->database->select_field_data($post_id,'file_id');
+            if($file_id === null){ // se o registro não existir, trata-se do primeiro salvamento (criação)
+                $file_id = $post_id; // o id do arquivo deverá ser o id do post
+                $this->save_meta_boxes_data_creation($post_id);
             }
+            else{ // se o registro existir, trata-se de salvamentos posteriores (atualização)
+                $file_id = (int)$file_id; // converte para inteiro o file_id retornado do banco como texto
+                $this->save_meta_boxes_data_update($post_id,$file_id);
+            }
+        }
 
-            // ----------------------------------------------------------------------
-            // 2. PROCESSAMENTO DO UPLOAD DO ARQUIVO
-            // ----------------------------------------------------------------------
+        public function save_meta_boxes_data_creation($post_id){
 
-            // Verifica se houve submissão de um novo arquivo
-            $new_file_attached = isset($_FILES['document_file']) && $_FILES['document_file']['error'] === UPLOAD_ERR_OK;
+            /* obtem os dados do arquivo submetido como upload*/
+            $file = $_FILES['document_file'];
+            $file_name = $file['name'];
+            $file_tmp_path = $file['tmp_name'];
+
+            $file_id = $post_id;
             
-            if ($new_file_attached) {
-                $file = $_FILES['document_file'];
-                $file_name = $file['name'];
-                $file_tmp_path = $file['tmp_name'];
-
-                // A função bunny_upload_file lida com a substituição (ou novo upload).
-                // Se ela sempre usa o $file_id para o caminho, não precisamos deletar o antigo.
-                $new_file_url = $this->storage_bucket->bunny_upload_file($file_id, $file_tmp_path, $file_name); 
-                
-                // Atualiza a URL do arquivo com a nova URL
-                $file_url = $new_file_url;
-            } 
-            // Se for atualização e NÃO houver novo arquivo anexado, $file_url mantém a URL antiga.
-            // Se for criação e NÃO houver arquivo anexado, $file_url permanece vazio.
-
-            // ----------------------------------------------------------------------
-            // 3. OBTENÇÃO E SANITIZAÇÃO DOS METADADOS (Sem Duplicação)
-            // ----------------------------------------------------------------------
+            /* envia os dados da o upload do arquivo no bucket bunny.net. a função se responsabiliza por substituir o arquivo original no bucket*/
+            $file_url = $this->storage_bucket->bunny_upload_file($file_id, $file_tmp_path, $file_name); // devolve a url do recurso no bucket
             
             # obtém os valores dos metadados novos, vindos do formulário
             $new_palavra_chave_value = isset($_POST['document_palavra_chave']) ? sanitize_text_field($_POST['document_palavra_chave']) : '';
@@ -160,10 +139,7 @@ if(!class_exists('Documents_CPT')){
             $new_tipo_doc_value = isset($_POST['document_tipo_doc']) ? sanitize_text_field($_POST['document_tipo_doc']) : '';
             $new_ano_value = isset($_POST['document_ano']) ? sanitize_text_field($_POST['document_ano']) : '';
 
-            // ----------------------------------------------------------------------
-            // 4. PREPARAÇÃO FINAL DOS DADOS E SALVAMENTO (Única Chamada)
-            // ----------------------------------------------------------------------
-
+            // Preparar os dados para inserir na tabela
             $data_to_save = array(
                 'post_id'       => $post_id,
                 'palavra_chave' => $new_palavra_chave_value,
@@ -171,13 +147,50 @@ if(!class_exists('Documents_CPT')){
                 'agenda'        => $new_agenda_value,
                 'tipo_doc'      => $new_tipo_doc_value,
                 'ano'           => $new_ano_value,
-                'file_id'       => $file_id, // Sempre o $file_id determinado na Seção 1
-                'file_url'      => $file_url, // Sempre o $file_url atualizado ou existente
+                'file_id'       => $file_id,
+                'file_url'      => $file_url,
             );
 
-            // A função update_data deve ser capaz de INSERIR (na criação) ou 
-            // ATUALIZAR (na atualização) o registro com base no 'post_id'.
+            // atualiza/salva os dados do documento na tabela
             $this->database->update_data($post_id, $data_to_save);
+        }
+
+        public function save_meta_boxes_data_update($post_id,$file_id){  
+
+            $file_url = $this->database->select_field_data($post_id, 'file_url');
+
+            /* obtem os dados do arquivo submetido como upload*/
+            $file = $_FILES['document_file'];
+            if($file['size']!==0){ // se houve mudança do arquivo .pdf, precisamos atualizar no bucket
+                $file_name = $file['name'];
+                $file_tmp_path = $file['tmp_name'];
+
+                /* envia os dados da o upload do arquivo no bucket bunny.net. a função se responsabiliza por substituir o arquivo original no bucket*/
+                $file_url = $this->storage_bucket->bunny_upload_file($file_id, $file_tmp_path, $file_name); // devolve a url do recurso no bucket
+            }
+
+            # obtém os valores dos metadados novos, vindos do formulário
+            $new_palavra_chave_value = isset($_POST['document_palavra_chave']) ? sanitize_text_field($_POST['document_palavra_chave']) : '';
+            $new_esfera_value = isset($_POST['document_esfera']) ? sanitize_text_field($_POST['document_esfera']) : '';
+            $new_agenda_value = isset($_POST['document_agenda']) ? sanitize_text_field($_POST['document_agenda']) : '';
+            $new_tipo_doc_value = isset($_POST['document_tipo_doc']) ? sanitize_text_field($_POST['document_tipo_doc']) : '';
+            $new_ano_value = isset($_POST['document_ano']) ? sanitize_text_field($_POST['document_ano']) : '';
+
+            // Preparar os dados para inserir na tabela
+            $data_to_save = array(
+                'post_id'       => $post_id,
+                'palavra_chave' => $new_palavra_chave_value,
+                'esfera'        => $new_esfera_value,
+                'agenda'        => $new_agenda_value,
+                'tipo_doc'      => $new_tipo_doc_value,
+                'ano'           => $new_ano_value,
+                'file_id'       => $file_id,
+                'file_url'      => $file_url,
+            );
+
+            // atualiza/salva os dados do documento na tabela
+            $this->database->update_data($post_id, $data_to_save);    
+            
         }
     }
 }
