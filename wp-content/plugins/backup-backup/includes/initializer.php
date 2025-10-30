@@ -148,10 +148,10 @@
           $review_banner = new \Inisev\Subs\Inisev_Review(BMI_ROOT_FILE, BMI_ROOT_DIR, 'backup-backup', 'Backup & Migration', 'http://bit.ly/3vdk45L', 'backup-migration');
         }
 
-        // if (!(class_exists('\Inisev\Subs\New_BB_Banner') || class_exists('Inisev\Subs\New_BB_Banner') || class_exists('New_BB_Banner'))) {
-        //   require_once BMI_MODULES_DIR . 'new-bb-banner' . DIRECTORY_SEPARATOR . 'misc.php';
-        // }
-        // new \Inisev\Subs\New_BB_Banner(BMI_ROOT_FILE, BMI_ROOT_DIR, 'backup-backup', 'Backup & Migration', 'backup-migration');
+        if (!(class_exists('\Inisev\Subs\New_BB_Banner') || class_exists('Inisev\Subs\New_BB_Banner') || class_exists('New_BB_Banner'))) {
+          require_once BMI_MODULES_DIR . 'new-bb-banner' . DIRECTORY_SEPARATOR . 'misc.php';
+          new \Inisev\Subs\New_BB_Banner(BMI_ROOT_FILE, BMI_ROOT_DIR, 'backup-backup', 'Backup & Migration', 'backup-migration');
+        }
 
 
         // GDrive banner
@@ -184,6 +184,9 @@
       // Settings action
       add_filter('plugin_action_links_' . plugin_basename(BMI_ROOT_FILE), [&$this, 'settings_action']);
 
+      // Whitelist configuration files for Security Ninja
+      add_filter('securityninja_whitelist', [&$this, 'securityninja_whitelist_config_files']);
+
       // Ignore below actions if those true
       if (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
         return;
@@ -195,6 +198,19 @@
 
       // External storage errors
       add_action('bmi_external_errors', function() {
+
+        if (file_exists(BMI_INCLUDES . 'notices/dropbox-issues-notice.php'))
+          require_once BMI_INCLUDES . 'notices/dropbox-issues-notice.php';
+
+        if (file_exists(BMI_INCLUDES . '/notices/aws-issues.php'))
+          require_once BMI_INCLUDES . '/notices/aws-issues.php';
+
+        if (file_exists(BMI_INCLUDES . '/notices/google-drive-issues.php'))
+          require_once BMI_INCLUDES . '/notices/google-drive-issues.php';
+
+        if (file_exists(BMI_INCLUDES . '/notices/wasabi-issues.php'))
+          require_once BMI_INCLUDES . '/notices/wasabi-issues.php';
+        
         require_once BMI_INCLUDES . '/notices/backupbliss.php';
       });
 
@@ -559,6 +575,44 @@
       return $links;
     }
 
+    /**
+     * Whitelist configuration files for Security Ninja plugin.
+     *
+     * This filter callback prevents Security Ninja from deleting or flagging
+     * Backup Migration configuration files as suspicious. These files are
+     * essential for the plugin's operation and should be preserved.
+     *
+     * @param array $whitelist Existing whitelist array from Security Ninja
+     * @return array Modified whitelist array with our configuration files added
+     */
+    public function securityninja_whitelist_config_files($whitelist = array()) {
+      if (!is_array($whitelist)) {
+        $whitelist = array();
+      }
+
+      // Add all configuration files to the whitelist
+      $config_files = array(
+        BMI_CONFIG_DEFAULT,
+        BMI_STATIC_PHP_CONFIG,
+        BMI_INCLUDES . DIRECTORY_SEPARATOR . 'htaccess' . DIRECTORY_SEPARATOR . '*'
+      );
+
+      // Add config directory if defined
+      if (defined('BMI_CONFIG_DIR') && BMI_CONFIG_DIR) {
+        $config_files[] = BMI_CONFIG_DIR . DIRECTORY_SEPARATOR . '*';
+      }
+
+      // Add config path if defined
+      if (defined('BMI_CONFIG_PATH') && BMI_CONFIG_PATH) {
+        $config_files[] = BMI_CONFIG_PATH;
+      }
+
+      // Merge with existing whitelist and remove duplicates
+      $whitelist = array_unique(array_merge($whitelist, $config_files));
+
+      return $whitelist;
+    }
+
     public function include_offline() {
 
       
@@ -703,7 +757,6 @@
         $plan = intval(@file_get_contents(BMI_TMP . DIRECTORY_SEPARATOR . '.plan'));
         if ($last_time < $plan && ((time() - $plan) > 7200)) {
           if ($last_status !== '0') {
-            $this->backup_inproper_time($plan);
             if (!wp_next_scheduled('bmi_do_backup_right_now')) {
               wp_schedule_single_event(time(), 'bmi_do_backup_right_now');
             }
@@ -746,7 +799,11 @@
           $message .= "\nError: " . $e;
         }
 
-        self::send_notification_mail($email, $subject, $message);
+        if (!self::send_notification_mail($email, $subject, $message, true)) {
+          $issue = __("Couldn't send mail to you, please check server configuration.", 'backup-backup') . '<br>';
+          $issue .= '<b>' . __("Message you missed because of this: ", 'backup-backup') . '</b>' . $message;
+          self::email_error($issue);
+        }
       }
 
       if (file_exists(BMI_BACKUPS . '/.cron')) {

@@ -26,7 +26,7 @@
         </div>
         <div class="step-content space-between flexcenter title">
             <span
-            class="f20 medium block"><?php _e("Sign Up on BackupBliss to <b>claim your 500 MB of free storage</b>", 'backup-backup'); ?></span>
+            class="f20 medium block"><?php _e("Sign Up on BackupBliss to <b>claim your 1 GB of free storage</b>", 'backup-backup'); ?></span>
             <a href="<?php echo BMI_BB_STORAGE_URI; ?>" target="_blank" class="btn bold"><?php _e("Sign up now", 'backup-backup'); ?></a>
         </div>
         </li>
@@ -44,7 +44,7 @@
             <span class="f18 mbll">
                 <?php
                 echo sprintf(
-                __("If the free 500 MB aren’t enough, you can get more space. It’s very affordable (see %spricing%s).<br>You can buy space directly in your %sBackupBliss account%s.", 'backup-backup'),
+                __("If the free 1 GB aren’t enough, you can get more space. It’s very affordable (see %spricing%s).<br>You can buy space directly in your %sBackupBliss account%s.", 'backup-backup'),
                 '<a href="' . BMI_AUTHOR_URI . 'pricing' . '" target="_blank" class="secondary hoverable nodec">',
                 '</a>',
                 '<a href="' . BMI_BB_STORAGE_URI . '" target="_blank" class="secondary hoverable nodec">',

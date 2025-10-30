@@ -14,7 +14,7 @@
     <div class="bmi-modal-content">
 
       <div class="center">
-        <div class="mbl cf center block inline">
+        <div class="mbl cf center inline">
           <div class="left center">
             <img class="inline bmi-staging-success-img-normal" src="<?php echo $this->get_asset('images', 'success.png'); ?>" alt="success">
             <img class="inline bmi-image-hide bmi-staging-success-img-tastewp" src="<?php echo $this->get_asset('images', 'tlogo.svg'); ?>" alt="tastewp">

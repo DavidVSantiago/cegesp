@@ -277,8 +277,17 @@
   <div id="ask-if-update-anyway">
     <?php _e('Would you like to proceed with the update without a backup? %sUpdate Anyway.%s', 'backup-backup') ?>
   </div>
+  <div id="bmi-save-connect-ftp">
+    <?php _e('Connected to FTP server successfully.', 'backup-backup') ?>
+  </div>
   <div id="bmi-save-connect-sftp">
     <?php _e('Connected to SFTP server successfully.', 'backup-backup') ?>
+  </div>
+  <div id="direct-link-disabled-tooltip">
+    <?php _e('Enable backup accessibility via links in the plugin section “Where should the backup(s) be stored?”', 'backup-backup') ?>
+  </div>
+  <div id="direct-link-enabled-tooltip">
+    <?php _e('Copy link to backup file for super-quick migration', 'backup-backup') ?>
   </div>
 
 

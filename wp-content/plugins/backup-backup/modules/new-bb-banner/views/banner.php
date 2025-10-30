@@ -68,12 +68,12 @@
       <!-- Card 2 -->
       <div class="bmi-banner__card" id="bmi-banner__card-free-storage" style="display: none;">
         <div class="bmi-banner__card-header">
-          <img src="<?php echo $this->_asset('imgs/500mb-free.svg'); ?>" alt="500 MB free icon" />
-          <span>500 MB of <br><div class="bmi-banner__free-underlined"><span>free</span></div> storage</span>
+          <img src="<?php echo $this->_asset('imgs/1gb-free.svg'); ?>" alt="1 GB free icon" />
+          <span>1 GB of <br><div class="bmi-banner__free-underlined"><span>free</span></div> storage</span>
         </div>
         <span class="bmi-banner__card-text">
           We added our <b>own storage option,</b> giving you 
-          500 MB of free space (and 
+          1 GB of free space (and 
            <a href="<?php echo $backupblissPricing; ?>" target="_blank" class="bmi-links">very affordable</a>
            plans for more)! <a href="<?php echo $bbStorage; ?>" target="_blank" class="bmi-links">Learn more</a>
         </span>

@@ -31,10 +31,11 @@ if(!class_exists('Database_CPT')){
                 post_id bigint(20) NOT NULL UNIQUE,
                 palavra_chave varchar(255) NOT NULL,
                 esfera varchar(255) NOT NULL,
-                agenda varchar(255) NOT NULL,
-                tipo_doc varchar(255) NOT NULL,
+                poder varchar(255) NOT NULL,
+                etapa varchar(255) NOT NULL,
+                indicador varchar(255) NOT NULL,
                 ano int(4) NOT NULL,
-                file_id varchar(255) NOT NULL,
+                file_id bigint(20) NOT NULL UNIQUE,
                 file_url text NOT NULL,
                 PRIMARY KEY (id),
                 KEY post_id_idx (post_id)
@@ -53,22 +54,30 @@ if(!class_exists('Database_CPT')){
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             $table_name = $this->table_name;
 
+            $insert_formats = array('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s');
+            $update_formats = array('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s');
+            
+            if (!isset($data_to_save['post_id'])) {
+                $data_to_save['post_id'] = $post_id;
+            }
+
             $exists = $wpdb->get_var($wpdb->prepare("SELECT post_id FROM $this->table_name WHERE post_id = %d", $post_id));
+            
             if ($exists) {
-                // Se existe (edição de post), atualiza a linha
+                $update_data = $data_to_save;
+                unset($update_data['post_id']); 
                 $wpdb->update(
                     $table_name,
-                    $data_to_save,
+                    $update_data,
                     array('post_id' => $post_id),
-                    array('%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s'),
-                    array('%d')
+                    $update_formats, // Formatos para 8 campos (dados)
+                    array('%d')      // Formato para a condição WHERE (post_id)
                 );
             } else {
-                // Se não existe (novo post), insere a linha
                 $wpdb->insert(
                     $table_name,
                     $data_to_save,
-                    array('%d', '%s', '%s', '%s', '%s', '%d', '%s', '%s')
+                    $insert_formats // Formatos para 9 campos (dados + post_id)
                 );
             }
         }
@@ -109,6 +118,19 @@ if(!class_exists('Database_CPT')){
 
             // 3. Retorna o valor ou null
             return $value !== null ? (string) $value : null;
+        }
+
+        /* DELETE ------------------------------------------------------------------------------- */
+        public function delete_data($post_id){
+            global $wpdb;
+            $table_name = $this->table_name;
+
+            // Usa o helper do WPDB para remover registros associados ao post.
+            return $wpdb->delete(
+                $table_name,
+                array('post_id' => (int) $post_id),
+                array('%d')
+            );
         }
     }
 }

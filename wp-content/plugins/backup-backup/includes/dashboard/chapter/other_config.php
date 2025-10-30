@@ -227,7 +227,7 @@
     </div>
 
     <div class="f16">
-      <?php _e('At the top of the plugin you can create a backup instantly ("Create backup now" - button), or schedule them. Here are more options which trigger the backup creation:', 'backup-backup'); ?>
+      <?php _e('At the top of this screen you can create a backup instantly (“Create backup now!” - button), or schedule backups. Here are additional options that can trigger backup creation:', 'backup-backup'); ?>
     </div>
     
   </div>
@@ -265,7 +265,7 @@
         
         <div>
           <div class="mtll f16">
-            <?php _e("Activate this so that a backup is created before there are automatic WordPress updates (WordPress core, plugins, themes, or language files).", 'backup-backup'); ?>
+            <?php _e("When enabled, this feature will create a <b>partial</b> backup before the automatic updates of WordPress core, plugins, or themes on your website. <b>Only</b> the item(s) about to get updated will be backed up.", 'backup-backup'); ?>
           </div>
         </div>
         
@@ -295,7 +295,7 @@
                   </div>
                   <div class="f16 mtlll">
                     <?php _e("Copy and paste this URL into a browser and press Enter to trigger the backup creation.", 'backup-backup'); ?><br>
-                    <?php _e("Make sure you keep this URL a secret. For safety reasons, this only works once per hour, and you'll receive an email when it is used.", 'backup-backup'); ?>
+                    <?php _e("Make sure to keep this URL secret. For safety reasons, this trigger works only once per hour, and you will be emailed when it is used.", 'backup-backup'); ?>
                   </div>
                   <div class="mtll cf">
                     <div class="left lh60 mr20"><?php _e("Key:", 'backup-backup'); ?></div>
@@ -307,7 +307,7 @@
                     </div>
                   </div>
                   <div class="f16 mtlll">
-                    <?php _e("Change the key (which is part of the URL above) if you suspect an unauthorized person has gained access to it.", 'backup-backup'); ?>
+                    <?php _e("Change the Key (which is part of the URL above) if you suspect that an unauthorized person got access to it.", 'backup-backup'); ?>
                   </div>
                 </div>
               </td>
@@ -587,7 +587,7 @@
     
     <div class="mbll">
       <span class="relative">
-        <?php _e("When this plugins is", 'backup-backup'); ?> <b><?php _e("uninstalled:", 'backup-backup'); ?></b>
+        <?php _e("When this plugin is", 'backup-backup'); ?> <b><?php _e("uninstalled:", 'backup-backup'); ?></b>
         &nbsp;<span class="bmi-info-icon tooltip" tooltip="<?php echo $deinstalled_info; ?>"></span>
       </span><br>
     </div>
@@ -615,21 +615,23 @@
     <div class="fo-title bold">
       <?php _e("Other Premium Options", 'backup-backup'); ?> (#9)
     </div>
-
-    <div class="mtll">
+  
+    <div class="mbll">
       <span class="relative">
         <?php _e("Display settings", 'backup-backup'); ?>:
       </span>
     </div>
-    <div class="lh40">
-      <label for="hide-promotional-bmi-banners">
-        <input type="checkbox"<?php echo ($pros) ? "" : ' class="not-allowed" disabled' ?> id="hide-promotional-bmi-banners"<?php bmi_try_checked('OTHER:PROMOTIONAL:DISPLAY'); ?> />
-        <span class="relative<?php echo ($pros) ? "" : ' not-allowed' ?>"><?php _e("Hide promotional banners and carousel.", 'backup-backup'); ?>
-          <span class="inline premium-wrapper<?php echo (!$pros) ? "" : ' is-pro' ?>" tooltip="<?php echo esc_attr( $bmiHidePromos ); ?>">
-            <span class="premium premium-img premium-ntt"></span>
+    <div class="mm mm-border">
+      <div class="lh40">
+        <label for="hide-promotional-bmi-banners">
+          <input type="checkbox"<?php echo ($pros) ? "" : ' class="not-allowed" disabled' ?> id="hide-promotional-bmi-banners"<?php bmi_try_checked('OTHER:PROMOTIONAL:DISPLAY'); ?> />
+          <span class="relative<?php echo ($pros) ? "" : ' not-allowed' ?>"><?php _e("Hide promotional banners and carousel.", 'backup-backup'); ?>
+            <span class="inline premium-wrapper<?php echo (!$pros) ? "" : ' is-pro' ?>" tooltip="<?php echo esc_attr( $bmiHidePromos ); ?>">
+              <span class="premium premium-img premium-ntt"></span>
+            </span>
           </span>
-        </span>
-      </label>
+        </label>
+      </div>
     </div>
   </div>
 

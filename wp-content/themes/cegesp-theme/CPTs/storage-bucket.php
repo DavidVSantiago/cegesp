@@ -61,6 +61,13 @@ if(!class_exists('Storage_Bucket')){
             return 'https://' . $this->BUNNY_PULL_ZONE_HOST . '/' . $remote_file_path;
         }
 
+        /* remove o diretório do post, juntamente com todos os seus arquivos */
+        public function delete_file($file_id){
+            $normalized_id = trim((string) $file_id, '/');
+            $remote_directory_path = $this->BUNNY_STORAGE_ZONE . '/documents/' . $normalized_id . '/';
+            $this->_bunny_delete_file_by_path($remote_directory_path);
+        }
+
         # **************************************************************************************
         # MÉTODOS DE SERVIÇO (Listagem, Exclusão)
         # **************************************************************************************
@@ -146,7 +153,6 @@ if(!class_exists('Storage_Bucket')){
             error_log('Bunny.net Delete Error (Path: ' . $remote_file_path . '): Status ' . $status . ' - ' . wp_remote_retrieve_body($response));
             return false;
         }
-
 
     }
 }

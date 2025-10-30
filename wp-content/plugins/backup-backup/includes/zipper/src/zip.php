@@ -436,7 +436,7 @@ class Zip {
             $this->zip_progress->log(__('Starting background process on server-side...', 'backup-backup'), 'INFO');
             require_once BMI_INCLUDES . '/backup-process.php';
             $request = new Bypasser($identy, BMI_CONFIG_DIR, trailingslashit(WP_CONTENT_DIR), BMI_BACKUPS, trailingslashit(ABSPATH), plugin_dir_path(BMI_ROOT_FILE));
-            $request->send_beat(true, $this->zip_progress);
+            $request->handle_batch();
           }
         }
 
@@ -675,6 +675,7 @@ class Zip {
               return false;
             }
           });
+          $chunk = array_values($chunk);
           
           if (sizeof($chunk) > 0) {
             $needManipulation = false;

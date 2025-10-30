@@ -31,7 +31,7 @@
       <ul>
         <li><?php _e('Keep all files on <b>your server</b>', 'backup-backup'); ?></li>
         <li><?php _e('<b>Define the subpath</b> for your staging site', 'backup-backup'); ?></li>
-        <li><?php _e('Use (all) your <b>current live files</b> for the copy', 'backup-backup'); ?></li>
+        <li><?php _e('Free for any size and no expiry', 'backup-backup'); ?></li>
         <li><?php _e('<b>Free</b> for any size & <b>no expiry</b>', 'backup-backup'); ?></li>
       </ul>
     </div>
@@ -41,9 +41,9 @@
     <div class="bmi-stg-sel-benefits">
       <ul>
         <li><?php echo str_replace('%s', 'href="https://tastewp.com/?open=privacy" target="_blank"', __('Files are <b>protected</b> and <a %s>stay confidential</a>', 'backup-backup')); ?></li>
-        <li><?php _e('<b>Play around</b> without impacting your live server & domain', 'backup-backup'); ?></li>
+        <li><?php _e('<b>Play around</b> without impacting your live server and domain', 'backup-backup'); ?></li>
         <li><?php _e('Use <b>any (partial or full) backup</b> for the copy', 'backup-backup'); ?></li>
-        <li><?php echo str_replace('%s1%', 'href="https://tastewp.com/?open=login" target="_blank"', str_replace('%s2%', 'href="https://tastewp.com/premium-show" target="_blank"', __('Free for <b>up to 1GB & 2 days</b> (or 7 days if <a %s1%>logged in</a>) – remove limits by <a %s2%>upgrading</a>', 'backup-backup'))); ?></li>
+        <li><?php echo str_replace('%s1%', 'href="https://tastewp.com/?open=login" target="_blank"', str_replace('%s2%', 'href="https://tastewp.com/premium-show" target="_blank"', __('Free for <b>up to 1GB and 2 days</b> (or 7 days if <a %s1%>logged in</a>) – remove limits by <a %s2%>upgrading</a>', 'backup-backup'))); ?></li>
       </ul>
     </div>
   </div>

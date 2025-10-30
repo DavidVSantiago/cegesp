@@ -14,3 +14,38 @@
 [2025-10-20 15:07:29] [ERROR] 2_nonce = 6d2760e9d8
 [2025-10-20 15:07:29] [ERROR] 2_f = check-not-uploaded-backups
 [2025-10-20 15:07:29] [ERROR] Front End Ajax Error END
+[2025-10-23 16:17:02] [ERROR] Front End Ajax Error START
+[2025-10-23 16:17:02] [ERROR] call = is-running-backup
+[2025-10-23 16:17:02] [ERROR] 0_x = NetworkError when attempting to fetch resource.
+[2025-10-23 16:17:02] [ERROR] 1_x = is-running-backup
+[2025-10-23 16:17:02] [ERROR] 2_action = backup_migration
+[2025-10-23 16:17:02] [ERROR] 2_token = bmi
+[2025-10-23 16:17:02] [ERROR] 2_nonce = 27ca19f3eb
+[2025-10-23 16:17:02] [ERROR] 2_f = is-running-backup
+[2025-10-23 16:17:02] [ERROR] Front End Ajax Error END
+[2025-10-23 16:17:02] [ERROR] Front End Ajax Error START
+[2025-10-23 16:17:02] [ERROR] call = bb-storage-info
+[2025-10-23 16:17:02] [ERROR] 0_x = NetworkError when attempting to fetch resource.
+[2025-10-23 16:17:02] [ERROR] 1_x = bb-storage-info
+[2025-10-23 16:17:02] [ERROR] 2_action = backup_migration
+[2025-10-23 16:17:02] [ERROR] 2_token = bmi
+[2025-10-23 16:17:02] [ERROR] 2_nonce = 27ca19f3eb
+[2025-10-23 16:17:02] [ERROR] 2_f = bb-storage-info
+[2025-10-23 16:17:02] [ERROR] Front End Ajax Error END
+[2025-10-23 16:18:34] [LOG] Criando backup
+[2025-10-23 16:18:34] [LOG] Encontrado63 arquivos para fazer o backup.
+[2025-10-23 16:18:35] [LOG] Novo backup criado e seu nome é:BM_2025-10-23_16_18_34_FSUQxuhXqdL2aBck.zip
+[2025-10-23 16:18:35] [LOG] Process (backup) finished successfully via ajax.php
+[2025-10-30 22:18:44] [ERROR] Front End Ajax Error START
+[2025-10-30 22:18:44] [ERROR] call = check-not-uploaded-backups
+[2025-10-30 22:18:44] [ERROR] 0_x = NetworkError when attempting to fetch resource.
+[2025-10-30 22:18:44] [ERROR] 1_x = check-not-uploaded-backups
+[2025-10-30 22:18:44] [ERROR] 2_action = backup_migration
+[2025-10-30 22:18:44] [ERROR] 2_token = bmi
+[2025-10-30 22:18:44] [ERROR] 2_nonce = 96d303887a
+[2025-10-30 22:18:44] [ERROR] 2_f = check-not-uploaded-backups
+[2025-10-30 22:18:44] [ERROR] Front End Ajax Error END
+[2025-10-30 22:19:39] [LOG] Criando backup
+[2025-10-30 22:19:39] [LOG] Encontrado63 arquivos para fazer o backup.
+[2025-10-30 22:19:41] [LOG] Novo backup criado e seu nome é:BM_2025-10-30_22_19_39_Kx8pj75uBhE24mbM.zip
+[2025-10-30 22:19:41] [LOG] Process (backup) finished successfully via ajax.php

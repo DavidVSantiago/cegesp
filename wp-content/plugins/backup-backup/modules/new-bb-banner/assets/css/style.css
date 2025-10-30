@@ -111,17 +111,19 @@
 }
 
 .bmi-banner__cta-button {
-  background: #00a6b2;
+  background: #148E87;
+  font-weight: 700;
   color: #fff;
   border: none;
   border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 10px 50px;
+  font-size: 20px;
   cursor: pointer;
   margin-right: 20px;
 }
+
 .bmi-banner__cta-button:hover {
-  background: #008a92;
+  background: #10736E;
 }
 
 .bmi-banner .bmi-links {

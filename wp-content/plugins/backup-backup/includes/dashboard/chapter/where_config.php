@@ -47,7 +47,8 @@
     			<div class="d-flex">
     				<div class="w270" style="margin-top: 23px;"><span><?php _e("Backup directory path:", 'backup-backup'); ?></span></div>
     				<div>
-    					<div class="w100 pos-r"><input type="text" id="bmi_path_storage_default" placeholder="<?php _e("Enter directory path", 'backup-backup'); ?>" class="input-locally_web_server" value="<?php echo sanitize_text_field(bmi_get_config('STORAGE::LOCAL::PATH')); ?>" autocomplete="off">
+    					<div class="w100 pos-r local-backup-path-wrapper"><input type="text" id="bmi_path_storage_default" placeholder="<?php _e("Enter directory path", 'backup-backup'); ?>" class="input-locally_web_server" value="<?php echo sanitize_text_field(bmi_get_config('STORAGE::LOCAL::PATH')); ?>" autocomplete="off">
+                <span class="backups-suffix" id="local-backups-suffix"> /backups</span>
     						<!---->
     					</div>
     					<div class="mt10"><span>
@@ -87,52 +88,25 @@
 
       <?php include BMI_INCLUDES . '/bodies/storage/backupbliss.php'; ?>
 
+      <?php require_once BMI_INCLUDES . '/bodies/storage/dropbox.php'; ?>
+
+      <?php require_once BMI_INCLUDES . '/bodies/storage/gdrive.php'; ?>
+
+      <?php require_once BMI_INCLUDES . '/bodies/storage/ftp.php'; ?>
+
+      <?php require_once BMI_INCLUDES . '/bodies/storage/aws.php'; ?>
+
+      <?php require_once BMI_INCLUDES . '/bodies/storage/wasabi.php'; ?>
+
       <?php
         if (has_action('bmi_pro_google_drive_template')) {
           do_action('bmi_pro_google_drive_template');
-        } else {
-      ?>
-      <div class="tab2-item">
-        <div class="already_ready"></div>
-        <div class="bg_clock_day2">
-          <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="crown" class="crown_img" height="30px" width="30px">
-          <?php echo BMI_ALREADY_IN_PRO; ?>
-        </div>
-        <div class="d-flex ia-center">
-          <img src="<?php echo $this->get_asset('images', 'google-drive.svg') ?>" alt="logo" class="tab2-img"> <span class="ml25 title_whereStored">Google Drive</span>
-          <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="logo" class="crown2">
-        </div>
-        <div class="ia-center">
-          <div class="b2 bmi-switch"><input type="checkbox" disabled="disabled" class="checkbox">
-            <div class="bmi-knobs"><span></span></div>
-            <div class="bmi-layer_str"></div>
-          </div>
-        </div>
-      </div>
-      <?php } ?>
-      <?php
+        }
+
         if (has_action('bmi_pro_dropbox_template')) {
           do_action('bmi_pro_dropbox_template');
-        } else {
+        }
       ?>
-      <div class="tab2-item">
-        <div class="already_ready"></div>
-        <div class="bg_clock_day2">
-          <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="crown" class="crown_img" height="30px" width="30px">
-          <?php echo BMI_ALREADY_IN_PRO; ?>
-        </div>
-        <div class="d-flex ia-center">
-          <img src="<?php echo $this->get_asset('images', 'dropbox.svg') ?>" alt="logo" class="tab2-img"> <span class="ml25 title_whereStored">Dropbox</span>
-          <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="logo" class="crown2">
-        </div>
-        <div class="ia-center">
-          <div class="b2 bmi-switch"><input type="checkbox" disabled="disabled" class="checkbox">
-            <div class="bmi-knobs"><span></span></div>
-            <div class="bmi-layer_str"></div>
-          </div>
-        </div>
-      </div>
-      <?php } ?>
 
       <?php
         if (has_action('bmi_pro_one_drive_template')) {
@@ -183,55 +157,15 @@
           </div>
       <?php } ?>
 
-        <?php
-        if (has_action('bmi_pro_ftp_template')) {
-
-            do_action('bmi_pro_ftp_template');
-        } else {
-            ?>
-            <div class="tab2-item">
-                <div class="already_ready"></div>
-                <div class="bg_clock_day2">
-                  <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="crown" class="crown_img" height="30px" width="30px">
-                  <?php echo BMI_ALREADY_IN_PRO; ?>
-                </div>
-                <div class="d-flex ia-center">
-                  <img src="<?php echo $this->get_asset('images', 'ftp.svg') ?>" alt="logo" class="tab2-img"> <span class="ml25 title_whereStored">FTP</span>
-                  <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="logo" class="crown2">
-                </div>
-                <div class="ia-center">
-                    <div class="b2 bmi-switch"><input type="checkbox" disabled="disabled" class="checkbox">
-                        <div class="bmi-knobs"><span></span></div>
-                        <div class="bmi-layer_str"></div>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-
       <?php
+        if (has_action('bmi_pro_ftp_template')) {
+          do_action('bmi_pro_ftp_template');
+        }
+        
         if (has_action('bmi_pro_aws_s3_template')) {
           do_action('bmi_pro_aws_s3_template');
-        } else {
-      ?>
-      <div class="tab2-item">
-        <div class="already_ready"></div>
-        <div class="bg_clock_day2">
-          <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="crown" class="crown_img" height="30px" width="30px">
-          <?php echo BMI_ALREADY_IN_PRO; ?>
-        </div>
-        <div class="d-flex ia-center">
-          <img src="<?php echo $this->get_asset('images', 'Amazon.svg') ?>" alt="logo" class="tab2-img"> <span class="ml25 title_whereStored">Amazon S3</span>
-          <img src="<?php echo $this->get_asset('images', 'premium.svg') ?>" alt="logo" class="crown2">
-        </div>
-        <div class="ia-center">
-          <div class="b2 bmi-switch"><input type="checkbox" disabled="disabled" class="checkbox">
-            <div class="bmi-knobs"><span></span></div>
-            <div class="bmi-layer_str"></div>
-          </div>
-        </div>
-      </div>
-      <?php } ?>
-      <?php
+        }
+
         if (has_action('bmi_pro_wasabi_template')) {
           do_action('bmi_pro_wasabi_template');
         }

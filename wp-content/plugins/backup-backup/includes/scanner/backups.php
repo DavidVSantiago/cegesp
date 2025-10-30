@@ -102,8 +102,9 @@
         }
       }
 
-      if (is_string($md5summary)) {
+      if (!is_array($md5summary)) {
         @unlink($md5_file_summary_path);
+        $md5summary = [];
       }
 
       $md5s = [];
@@ -207,6 +208,7 @@
       
       // $start = time();
       // $maxTime = ini_get('max_execution_time');
+      $uploadedBackupStatus = get_option('bmi_uploaded_backups_status', []);
 
       for ($i = 0; $i < sizeof($backups); ++$i) {
         
@@ -217,7 +219,15 @@
         $path = $backup['path'] . '/' . $backup['filename'];
         
         $manifest = $this->getManifestFromZip($path, $zipper);
-        if ($manifest) $manifests[$backup['filename']] = $manifest;
+        if ($manifest) {
+          $md5 = $manifest[7];
+          if (isset($uploadedBackupStatus[$md5])) {
+            $manifest[] = $uploadedBackupStatus[$md5];
+          } else {
+            $manifest[] = [];
+          }
+          $manifests[$backup['filename']] = $manifest;
+        }
         else{
           if (!file_exists(BMI_BACKUPS . '/.running')) @unlink($path); // Prevents deletion of running backups
         }

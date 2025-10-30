@@ -12,7 +12,7 @@
   /**
    * Main File Backup Includable Logs
    */
-  class BMI_ZipProgress {
+  class BMI_ZipProgress_Logger {
 
     public $latest;
     public $progress;

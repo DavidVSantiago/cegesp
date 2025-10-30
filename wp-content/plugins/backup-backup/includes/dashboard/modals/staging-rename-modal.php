@@ -14,7 +14,7 @@
     <div class="bmi-modal-content">
 
       <div class="center">
-        <div class="mbl cf center block inline">
+        <div class="mbl cf center inline">
           <div class="left center">
             <img class="inline bmi-rename-icon-modal" src="<?php echo $this->get_asset('images', 'pen-edit.svg'); ?>" alt="success">
           </div>

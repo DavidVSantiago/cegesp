@@ -1,102 +1,104 @@
-[WARN] [2025-10-17 12:46:05] PHP CLI está manualmente desabilitado, o plugin irá pular todas as etapas de PHP CLI.
-[WARN] [2025-10-17 12:46:05] O arquivo PHP CLI não pode ser executado devido a um motivo desconhecido.
-[STEP] [2025-10-17 12:46:05] Iniciando backup...
-[INFO] [2025-10-17 12:46:05] Versão do Backup & Migration:1.4.9.1
-[INFO] [2025-10-17 12:46:05] Site do qual será feito backup:http://localhost/cegesp
-[INFO] [2025-10-17 12:46:05] Versão do PHP:8.2.12
-[INFO] [2025-10-17 12:46:05] Versão do WP: 6.8.3
-[INFO] [2025-10-17 12:46:05] Versão do MySQL:10.4.32
-[INFO] [2025-10-17 12:46:05] Comprimento Máximo do MySQL:1048576
-[INFO] [2025-10-17 12:46:05] Servidor web:Apache/2.4.58 (Unix) OpenSSL/1.1.1w PHP/8.2.12 mod_perl/2.0.12 Perl/v5.34.1
-[INFO] [2025-10-17 12:46:05] Tempo máximo de execução (em segundos):120
-[INFO] [2025-10-17 12:46:05] Limite de memória (servidor): 512M
-[INFO] [2025-10-17 12:46:05] Limite de memória (wp-config): 40M
-[INFO] [2025-10-17 12:46:05] Limite de memória (wp-config admin): 512M
-[INFO] [2025-10-17 12:46:05] Máximo de linhas por consulta (nesse site):2000
-[INFO] [2025-10-17 12:46:05] Verificando se o diretório de backup possui permissão para gravação...
-[INFO] [2025-10-17 12:46:05] Iniciando o gerenciador de erros personalizado
-[SUCCESS] [2025-10-17 12:46:05] Sim, possui permissão para gravação...
-[STEP] [2025-10-17 12:46:05] Verificando arquivos...
-[INFO] [2025-10-17 12:46:05] Tamanho total dos arquivos excluídos: 0 bytes
-[VERBOSE] [2025-10-17 12:46:05] Total size of excluded files (bytes): 0
-[STEP] [2025-10-17 12:46:05] Verificando espaço livre, reservando...
-[INFO] [2025-10-17 12:46:05] Requer ao menos 115448 bytes. [112.74 KB]
-[INFO] [2025-10-17 12:46:05] A função de espaço livre em disco não está desativada, utilizando...
-[INFO] [2025-10-17 12:46:05] Verificando esse caminho/partição:/opt/lampp/htdocs/cegesp/wp-content/backup-migration-BF9ZRnbsfC/backups
-[SUCCESS] [2025-10-17 12:46:05] Há20,152.98 MB livres. [19.68 GB]
-[SUCCESS] [2025-10-17 12:46:05] Excelente! Temos espaço suficiente.
-[SUCCESS] [2025-10-17 12:46:05] Confirmado, há espaço mais do que suficiente, verificado:115448 bytes
-[INFO] [2025-10-17 12:46:05] Varredura concluída - encontrados56 arquivos...
-[SUCCESS] [2025-10-17 12:46:05] Backup iniciado...
-[STEP] [2025-10-17 12:46:05] Iniciando sistema de arquivamento...
-[SUCCESS] [2025-10-17 12:46:05] Sistema de arquivamento iniciado...
-[STEP] [2025-10-17 12:46:05] Preparando mapeamento de arquivos...
-[SUCCESS] [2025-10-17 12:46:05] Arquivos preparados.
-[INFO] [2025-10-17 12:46:05] Iniciando processo de compactação...
-[STEP] [2025-10-17 12:46:05] Cálculo de memória inteligente...
-[INFO] [2025-10-17 12:46:05] Há 512 MB de memória para usar
-[INFO] [2025-10-17 12:46:05] Limite de memória do WordPress: 512 MBs
-[SUCCESS] [2025-10-17 12:46:05] Estabelecendo o limite seguro para 57 MB
-[INFO] [2025-10-17 12:46:05] O ZipArchive está disponível, este processo deve usar o ZipArchive
-[INFO] [2025-10-17 12:46:05] Configuração antiga: usando módulos padrão dependendo do servidor do usuário
-[STEP] [2025-10-17 12:46:05] Fazendo backup do banco de dados (usando o mecanismo v3, requer pelo menos v1.2.2 para restaurar)
-[INFO] [2025-10-17 12:46:05] Iterando banco de dados...
-[INFO] [2025-10-17 12:46:05] Memory usage after initialization: 37.04 MB
-[VERBOSE] [2025-10-17 12:46:05] Exporting database via zip.php
-[INFO] [2025-10-17 12:46:05] Scan found 12 tables (292 rows), estimated total size: 2.07 MB.
-[INFO] [2025-10-17 12:46:05] Memory usage after getting table names: 37.07 MB 
-[INFO] [2025-10-17 12:46:05] Getting table recipes...
-[INFO] [2025-10-17 12:46:05] Table recipes have been exported.
-[INFO] [2025-10-17 12:46:05] Memory usage after loading recipes: 37.08 MB 
-[INFO] [2025-10-17 12:46:05] Saving recipes...
-[INFO] [2025-10-17 12:46:05] Recipes saved.
-[INFO] [2025-10-17 12:46:05] Memory usage after recipe off-load: 37.07 MB
-[INFO] [2025-10-17 12:46:05] Exporting table data...
-[STEP] [2025-10-17 12:46:05] Getting data of table: wp_commentmeta (1/12, 0.05 MB)
-[INFO] [2025-10-17 12:46:05] Table wp_commentmeta is empty, saving only recipe.
-[STEP] [2025-10-17 12:46:05] Getting data of table: wp_comments (2/12, 0.09 MB)
-[SUCCESS] [2025-10-17 12:46:05] Table export for: wp_comments finished (0.00364s)
-[STEP] [2025-10-17 12:46:05] Getting data of table: wp_links (3/12, 0.03 MB)
-[INFO] [2025-10-17 12:46:05] Table wp_links is empty, saving only recipe.
-[STEP] [2025-10-17 12:46:05] Getting data of table: wp_options (4/12, 1.48 MB)
-[SUCCESS] [2025-10-17 12:46:05] Table export for: wp_options finished (0.06546s)
-[STEP] [2025-10-17 12:46:05] Getting data of table: wp_postmeta (5/12, 0.05 MB)
-[SUCCESS] [2025-10-17 12:46:05] Table export for: wp_postmeta finished (0.00473s)
-[STEP] [2025-10-17 12:46:05] Getting data of table: wp_posts (6/12, 0.08 MB)
-[SUCCESS] [2025-10-17 12:46:06] Table export for: wp_posts finished (0.01189s)
-[STEP] [2025-10-17 12:46:06] Getting data of table: wp_term_relationships (7/12, 0.03 MB)
-[SUCCESS] [2025-10-17 12:46:06] Table export for: wp_term_relationships finished (0.00172s)
-[STEP] [2025-10-17 12:46:06] Getting data of table: wp_term_taxonomy (8/12, 0.05 MB)
-[SUCCESS] [2025-10-17 12:46:06] Table export for: wp_term_taxonomy finished (0.00171s)
-[STEP] [2025-10-17 12:46:06] Getting data of table: wp_termmeta (9/12, 0.05 MB)
-[INFO] [2025-10-17 12:46:06] Table wp_termmeta is empty, saving only recipe.
-[STEP] [2025-10-17 12:46:06] Getting data of table: wp_terms (10/12, 0.05 MB)
-[SUCCESS] [2025-10-17 12:46:06] Table export for: wp_terms finished (0.00124s)
-[STEP] [2025-10-17 12:46:06] Getting data of table: wp_usermeta (11/12, 0.05 MB)
-[SUCCESS] [2025-10-17 12:46:06] Table export for: wp_usermeta finished (0.00254s)
-[STEP] [2025-10-17 12:46:06] Getting data of table: wp_users (12/12, 0.06 MB)
-[SUCCESS] [2025-10-17 12:46:06] Table export for: wp_users finished (0.00137s)
-[INFO] [2025-10-17 12:46:06] Table data exported.
-[INFO] [2025-10-17 12:46:06] Memory usage after data export: 37.06 MB
-[INFO] [2025-10-17 12:46:06] Entire process took: 0.1505 s
-[SUCCESS] [2025-10-17 12:46:06] Backup de banco de dados concluído
-[STEP] [2025-10-17 12:46:06] Criando arquivo
-[INFO] [2025-10-17 12:46:06] Compactando...
-[WARN] [2025-10-17 12:46:06] O backup será executado como solicitação única, o processo pode se tornar instável...
-[INFO] [2025-10-17 12:46:06] Using ZipArchive extension for this backup process.
-[STEP] [2025-10-17 12:46:06] Adicionando arquivo(s) SQL do banco de dados ao arquivo de backup.
-[VERBOSE] [2025-10-17 12:46:06] Database files in total found: 12
-[SUCCESS] [2025-10-17 12:46:06] O banco de dados foi adicionado ao backup com sucesso.
-[STEP] [2025-10-17 12:46:06] Realizando o backup dos arquivos do site...
-[INFO] [2025-10-17 12:46:06] Os pedaços contêm250 arquivos.
-[INFO] [2025-10-17 12:46:06] Etapa:56/56
-[SUCCESS] [2025-10-17 12:46:06] Compactados56 arquivos
-[INFO] [2025-10-17 12:46:06] O arquivamento de56 arquivos levaram:0.45s
-[STEP] [2025-10-17 12:46:06] Finalizando o backup
-[INFO] [2025-10-17 12:46:06] Gerando arquivo de manifesto e salvando o log em tempo real...
-[INFO] [2025-10-17 12:46:07] Adicionando o arquivo de manifesto...
-[SUCCESS] [2025-10-17 12:46:07] Arquivo de manifesto e logs adicionados ao backup. Arquivos temporários removidos.
-[STEP] [2025-10-17 12:46:07] Fechando arquivos
-[SUCCESS] [2025-10-17 12:46:07] Limpeza concluída, backup completo.
-[SUCCESS] [2025-10-17 12:46:07] Novo backup criado e seu nome é:BM_2025-10-17_12_46_05_FdT4z0C5nevxoPkl.zip
-[END-CODE] [2025-10-17 12:46:07] #001
+[WARN] [2025-10-30 22:19:39] PHP CLI está manualmente desabilitado, o plugin irá pular todas as etapas de PHP CLI.
+[WARN] [2025-10-30 22:19:39] O arquivo PHP CLI não pode ser executado devido a um motivo desconhecido.
+[STEP] [2025-10-30 22:19:39] Iniciando backup...
+[INFO] [2025-10-30 22:19:39] Versão do Backup & Migration:2.0.0
+[INFO] [2025-10-30 22:19:39] Site do qual será feito backup:https://localhost/cegesp
+[INFO] [2025-10-30 22:19:39] Versão do PHP:8.2.12
+[INFO] [2025-10-30 22:19:39] Versão do WP: 6.8.3
+[INFO] [2025-10-30 22:19:39] Versão do MySQL:10.4.32
+[INFO] [2025-10-30 22:19:39] Comprimento Máximo do MySQL:16777216
+[INFO] [2025-10-30 22:19:39] Servidor web:Apache/2.4.58 (Unix) OpenSSL/1.1.1w PHP/8.2.12 mod_perl/2.0.12 Perl/v5.34.1
+[INFO] [2025-10-30 22:19:39] Tempo máximo de execução (em segundos):120
+[INFO] [2025-10-30 22:19:39] Limite de memória (servidor): 512M
+[INFO] [2025-10-30 22:19:39] Limite de memória (wp-config): 40M
+[INFO] [2025-10-30 22:19:39] Limite de memória (wp-config admin): 512M
+[INFO] [2025-10-30 22:19:39] Máximo de linhas por consulta (nesse site):2000
+[INFO] [2025-10-30 22:19:39] Verificando se o diretório de backup possui permissão para gravação...
+[INFO] [2025-10-30 22:19:39] Iniciando o gerenciador de erros personalizado
+[SUCCESS] [2025-10-30 22:19:39] Sim, possui permissão para gravação...
+[STEP] [2025-10-30 22:19:39] Verificando arquivos...
+[INFO] [2025-10-30 22:19:39] Tamanho total dos arquivos excluídos: 3751199 bytes
+[VERBOSE] [2025-10-30 22:19:39] Total size of excluded files (bytes): 3751199
+[STEP] [2025-10-30 22:19:39] Verificando espaço livre, reservando...
+[INFO] [2025-10-30 22:19:39] Requer ao menos 1540863 bytes. [1.47 MB]
+[INFO] [2025-10-30 22:19:39] A função de espaço livre em disco não está desativada, utilizando...
+[INFO] [2025-10-30 22:19:39] Verificando esse caminho/partição:/opt/lampp/htdocs/cegesp/wp-content/backup-migration-BF9ZRnbsfC/backups
+[SUCCESS] [2025-10-30 22:19:39] Há20,043.52 MB livres. [19.57 GB]
+[SUCCESS] [2025-10-30 22:19:39] Excelente! Temos espaço suficiente.
+[SUCCESS] [2025-10-30 22:19:39] Confirmado, há espaço mais do que suficiente, verificado:1540863 bytes
+[INFO] [2025-10-30 22:19:39] Varredura concluída - encontrados63 arquivos...
+[SUCCESS] [2025-10-30 22:19:39] Backup iniciado...
+[STEP] [2025-10-30 22:19:39] Iniciando sistema de arquivamento...
+[SUCCESS] [2025-10-30 22:19:39] Sistema de arquivamento iniciado...
+[STEP] [2025-10-30 22:19:39] Preparando mapeamento de arquivos...
+[SUCCESS] [2025-10-30 22:19:39] Arquivos preparados.
+[INFO] [2025-10-30 22:19:39] Iniciando processo de compactação...
+[STEP] [2025-10-30 22:19:39] Cálculo de memória inteligente...
+[INFO] [2025-10-30 22:19:39] Há 512 MB de memória para usar
+[INFO] [2025-10-30 22:19:39] Limite de memória do WordPress: 512 MBs
+[SUCCESS] [2025-10-30 22:19:39] Estabelecendo o limite seguro para 57 MB
+[INFO] [2025-10-30 22:19:39] O ZipArchive está disponível, este processo deve usar o ZipArchive
+[INFO] [2025-10-30 22:19:39] Configuração antiga: usando módulos padrão dependendo do servidor do usuário
+[STEP] [2025-10-30 22:19:39] Fazendo backup do banco de dados (usando o mecanismo v3, requer pelo menos v1.2.2 para restaurar)
+[INFO] [2025-10-30 22:19:39] Iterando banco de dados...
+[INFO] [2025-10-30 22:19:39] Memory usage after initialization: 41.46 MB
+[VERBOSE] [2025-10-30 22:19:39] Exporting database via zip.php
+[INFO] [2025-10-30 22:19:39] Scan found 13 tables (328 rows), estimated total size: 1.77 MB.
+[INFO] [2025-10-30 22:19:39] Memory usage after getting table names: 41.48 MB 
+[INFO] [2025-10-30 22:19:39] Getting table recipes...
+[INFO] [2025-10-30 22:19:39] Table recipes have been exported.
+[INFO] [2025-10-30 22:19:39] Memory usage after loading recipes: 41.49 MB 
+[INFO] [2025-10-30 22:19:39] Saving recipes...
+[INFO] [2025-10-30 22:19:39] Recipes saved.
+[INFO] [2025-10-30 22:19:39] Memory usage after recipe off-load: 41.48 MB
+[INFO] [2025-10-30 22:19:39] Exporting table data...
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_commentmeta (1/13, 0.05 MB)
+[INFO] [2025-10-30 22:19:39] Table wp_commentmeta is empty, saving only recipe.
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_comments (2/13, 0.09 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_comments finished (0.00168s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_cpt_documents (3/13, 0.06 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_cpt_documents finished (0.00225s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_links (4/13, 0.03 MB)
+[INFO] [2025-10-30 22:19:39] Table wp_links is empty, saving only recipe.
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_options (5/13, 1.09 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_options finished (0.03744s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_postmeta (6/13, 0.05 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_postmeta finished (0.01054s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_posts (7/13, 0.11 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_posts finished (0.03296s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_term_relationships (8/13, 0.03 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_term_relationships finished (0.00124s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_term_taxonomy (9/13, 0.05 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_term_taxonomy finished (0.00337s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_termmeta (10/13, 0.05 MB)
+[INFO] [2025-10-30 22:19:39] Table wp_termmeta is empty, saving only recipe.
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_terms (11/13, 0.05 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_terms finished (0.00129s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_usermeta (12/13, 0.05 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_usermeta finished (0.00542s)
+[STEP] [2025-10-30 22:19:39] Getting data of table: wp_users (13/13, 0.06 MB)
+[SUCCESS] [2025-10-30 22:19:39] Table export for: wp_users finished (0.00142s)
+[INFO] [2025-10-30 22:19:39] Table data exported.
+[INFO] [2025-10-30 22:19:39] Memory usage after data export: 41.47 MB
+[INFO] [2025-10-30 22:19:39] Entire process took: 0.1266 s
+[SUCCESS] [2025-10-30 22:19:39] Backup de banco de dados concluído
+[STEP] [2025-10-30 22:19:39] Criando arquivo
+[INFO] [2025-10-30 22:19:39] Compactando...
+[WARN] [2025-10-30 22:19:39] O backup será executado como solicitação única, o processo pode se tornar instável...
+[INFO] [2025-10-30 22:19:39] Using ZipArchive extension for this backup process.
+[STEP] [2025-10-30 22:19:39] Adicionando arquivo(s) SQL do banco de dados ao arquivo de backup.
+[VERBOSE] [2025-10-30 22:19:39] Database files in total found: 13
+[SUCCESS] [2025-10-30 22:19:40] O banco de dados foi adicionado ao backup com sucesso.
+[STEP] [2025-10-30 22:19:40] Realizando o backup dos arquivos do site...
+[INFO] [2025-10-30 22:19:40] Os pedaços contêm250 arquivos.
+[INFO] [2025-10-30 22:19:40] Etapa:63/63
+[SUCCESS] [2025-10-30 22:19:40] Compactados63 arquivos
+[INFO] [2025-10-30 22:19:40] O arquivamento de63 arquivos levaram:0.49s
+[STEP] [2025-10-30 22:19:40] Finalizando o backup
+[INFO] [2025-10-30 22:19:40] Gerando arquivo de manifesto e salvando o log em tempo real...
+[INFO] [2025-10-30 22:19:41] Adicionando o arquivo de manifesto...
+[SUCCESS] [2025-10-30 22:19:41] Arquivo de manifesto e logs adicionados ao backup. Arquivos temporários removidos.
+[STEP] [2025-10-30 22:19:41] Fechando arquivos
+[SUCCESS] [2025-10-30 22:19:41] Limpeza concluída, backup completo.
+[SUCCESS] [2025-10-30 22:19:41] Novo backup criado e seu nome é:BM_2025-10-30_22_19_39_Kx8pj75uBhE24mbM.zip
+[END-CODE] [2025-10-30 22:19:41] #001

@@ -104,7 +104,7 @@
         </div>
       </label>
 
-      <div class="flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
+      <div class="browse-details-wrapper right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
         <div class="nm">
           <a class="left f15 browse-details pointer" data-browsing-path="plugins">
             <?php _e("Details", 'backup-backup'); ?>
@@ -125,7 +125,7 @@
           </div>
         </div>
       </label>
-      <div class="flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
+      <div class="browse-details-wrapper flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
         <div class="nm">
           <a class="left f15 browse-details pointer" data-browsing-path="uploads">
             <?php _e("Details", 'backup-backup'); ?>
@@ -146,7 +146,7 @@
           </div>
         </div>
       </label>
-      <div class="flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
+      <div class="browse-details-wrapper flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
         <div class="nm">
           <a class="left f15 browse-details pointer" data-browsing-path="themes">
             <?php _e("Details", 'backup-backup'); ?>
@@ -167,7 +167,7 @@
           </div>
         </div>
       </label>
-      <div class="flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
+      <div class="browse-details-wrapper flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
         <div class="nm">
           <a class="left f15 browse-details pointer" data-browsing-path="other-contents">
             <?php _e("Details", 'backup-backup'); ?>
@@ -188,7 +188,7 @@
           </div>
         </div>
       </label>
-      <div class="flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
+      <div class="browse-details-wrapper flex right mrr nm premium-<?php bmi_pro_features($pros, true, $tooltip_premium_details); ?>">
         <div class="nm">
           <a class="left f15 browse-details pointer" data-browsing-path="wp-install">
             <?php _e("Details", 'backup-backup'); ?>
@@ -210,7 +210,7 @@
     <div class="left d-flex mr60 ia-center">
       <label class="container-radio">
         <?php _e("No", 'backup-backup'); ?>
-        <input type="radio" name="exclude_files_by_filters"<?php bmi_cb_collapsible('file_filters_exclusion'); ?> value="false"<?php bmi_try_checked('BACKUP:FILES::FILTER', true); ?>>
+        <input id="dis_exclude_files_by_filters" type="radio" name="exclude_files_by_filters"<?php bmi_cb_collapsible('file_filters_exclusion'); ?> value="false"<?php bmi_try_checked('BACKUP:FILES::FILTER', true); ?>>
         <span class="checkmark-radio"></span>
       </label>
       <label class="container-radio ml25">

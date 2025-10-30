@@ -8,6 +8,7 @@
 
   // Tooltips
   $ctl = __("Your account on Wordpress.org (where you open a new support thread) is different to the one you login to your WordPress dashboard (where you are now). If you don’t have a WordPress.org account yet, please sign up at the top right on the Support Forum page, and then scroll down on that page . It only takes a minute :) Thank you!", 'backup-backup');
+  $reviewedBefore = get_option('bmi_review_clicked', false);
 
 ?>
 
@@ -45,42 +46,43 @@
           <?php _e('- tab, and paste the link there.', 'backup-backup') ?>
         </div>
       </div>
-
-      <div class="bmi-ask-for-review">
-        <div class="cf mm60">
-          <div class="left bmi-positive-wrapper">
-            <img src="<?php echo $this->get_asset('images', 'big-thumb-up.svg'); ?>" alt="positive-thumb-up" class="bmi-positive-thumb">
-          </div>
-          <div class="left bmi-thumb-info">
-            <div class="f16 lh30 mm30 mtll mbll">
-              <?php _e("Like how easy it was? Then <b>PLEASE</b> give us a nice rating so that others discover out plugin & benefit from it too. Thank you!!", 'backup-backup'); ?>
+        <div class="bmi-ask-for-review" style="<?php echo $reviewedBefore ? 'display: none;' : ''; ?>">
+          <div class="cf mm60">
+            <div class="left bmi-positive-wrapper">
+              <img src="<?php echo $this->get_asset('images', 'big-thumb-up.svg'); ?>" alt="positive-thumb-up" class="bmi-positive-thumb">
             </div>
-            <div class="cf lh60 mm30">
-              <div class="left">
-                <a href="https://wordpress.org/support/plugin/backup-backup/reviews/#new-post" target="_blank" class="btn inline btn-pad mm30">
-                  <div class="text">
-                    <div class="f14 semibold"><?php _e('Sounds fair, let me give a rating', 'backup-backup'); ?></div>
-                  </div>
-                </a>
+            <div class="left bmi-thumb-info">
+              <div class="f16 lh30 mm30 mtll mbll">
+                <?php _e("Like how easy it was? Then <b>PLEASE</b> give us a nice rating so that others discover out plugin & benefit from it too. Thank you!!", 'backup-backup'); ?>
               </div>
-              <div class="right relative">
-                <a href="#!" class="nodec secondary semibold">
-                  <span class="tooltip hoverable info-cursor f14" tooltip="<?php echo $ctl; ?>">
-                    <?php _e("Trouble logging in?", 'backup-backup'); ?>
-                    <span class="bmi-info-icon"></span>
-                  </span>
-                </a>
+              <div class="cf lh60 mm30">
+                <div class="left">
+                  <a href="https://wordpress.org/support/plugin/backup-backup/reviews/#new-post" target="_blank" class="btn inline btn-pad mm30 bmi-review-btn">
+                    <div class="text">
+                      <div class="f14 semibold"><?php _e('Sounds fair, let me give a rating', 'backup-backup'); ?></div>
+                    </div>
+                  </a>
+                </div>
+                <div class="right relative">
+                  <a href="#!" class="nodec secondary semibold">
+                    <span class="tooltip hoverable info-cursor f14" tooltip="<?php echo $ctl; ?>">
+                      <?php _e("Trouble logging in?", 'backup-backup'); ?>
+                      <span class="bmi-info-icon"></span>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="mms">
+          <div class="f18 mtl mbl mms lh14 mm60">
+            <?php _e('You can manage the backup on the', 'backup-backup') ?>
+            "<a href="#" class="hoverable secondary go-to-marbs"><?php _e('Manage & Restore Backups', 'backup-backup') ?></a>"
+            <?php _e('- tab.', 'backup-backup') ?>
+          </div>
+        </div>
 
-      <div class="f18 mtl mbl mms lh14 mm60">
-        <?php _e('You can manage the backup on the', 'backup-backup') ?>
-        "<a href="#" class="hoverable secondary go-to-marbs"><?php _e('Manage & Restore Backups', 'backup-backup') ?></a>"
-        <?php _e('- tab.', 'backup-backup') ?>
-      </div>
 
       <div class="mms mtl flex-here lh50 mm60">
         <div class="f18 align-left">

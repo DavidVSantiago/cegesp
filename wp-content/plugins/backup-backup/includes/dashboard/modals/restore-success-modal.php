@@ -21,6 +21,8 @@
     $closeMessage
   );
 
+  $reviewedBefore = get_option('bmi_review_clicked', false);
+
 ?>
 
 <div class="bmi-modal bmi-modal-no-close" id="restore-success-modal">
@@ -68,7 +70,7 @@
       </div>
 
       <?php else: ?>
-      <div class="bmi-ask-for-review">
+      <div class="bmi-ask-for-review" style="<?php echo $reviewedBefore ? 'display: none;' : ''; ?>">
         <div class="cf mm60">
           <div class="left bmi-positive-wrapper">
             <img src="<?php echo $this->get_asset('images', 'big-thumb-up.svg'); ?>" alt="positive-thumb-up" class="bmi-positive-thumb">
@@ -79,7 +81,7 @@
             </div>
             <div class="cf lh60 mm30">
               <div class="left">
-                <a href="https://wordpress.org/support/plugin/backup-backup/reviews/#new-post" target="_blank" class="btn inline btn-pad mm30">
+                <a href="https://wordpress.org/support/plugin/backup-backup/reviews/#new-post" target="_blank" class="btn inline btn-pad mm30 bmi-review-btn">
                   <div class="text">
                     <div class="f14 semibold"><?php _e('Sounds fair, let me give a rating', 'backup-backup'); ?></div>
                   </div>

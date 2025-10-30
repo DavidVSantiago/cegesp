@@ -46,8 +46,8 @@
       </div>
 
       <div class="mm60 center mbl f18">
-        <div class="center block inline premium-<?php bmi_pro_features($pros, true, __("Recover only what you need from your backup", 'backup-backup')); ?>">
-          <div class="premium premium-img restore-parts">
+        <div class="center inline premium-<?php bmi_pro_features($pros, true, __("Recover only what you<br>need from your backup", 'backup-backup')); ?>">
+          <div class="premium premium-img restore-parts under">
             <?php _e('Only want to restore parts of the backup?', 'backup-backup') ?>
           </div>
         </div>
