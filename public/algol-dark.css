@@ -1,0 +1,36 @@
+/* ******************************************************************************************* */
+/* TEMA ************************************************************************************** */
+/* ******************************************************************************************* */
+
+:root {
+    --theme-color-scheme: dark; /* dark ou light. para colorir componentes nativos do navegador*/
+
+    --accent-A:#378acd;
+    --accent-B:#2174b8;
+
+    --bg-A:#0b0f13;
+    --bg-B:#121821;
+    --bg-C:#1a212c;
+    --bg-D:#242d3b;
+    
+    --bg-comp-A:#0c1219;
+    --bg-comp-dis-A:#373e46;
+
+    --border-A:#343e4f;
+    --border-B:var(--border-A);
+    --border-C:var(--border-A);
+
+    --text-A:#fff;
+    --text-B:#a2a2a2;
+    --text-C:var(--text-A);
+    --text-dis-A:#888888;
+
+    --comp-bright: 1.2;
+    --comp-dark: 0.8;
+
+    --overlay:#0019;
+    
+    /* Adicione aqui as suas variáveis de tema personalizadas */
+    --bg-card-A: #13191f;
+    
+}

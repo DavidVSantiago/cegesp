@@ -1,0 +1,30 @@
+@media (max-width: 900px) {
+  
+	/* REGRAS ESTRUTURAIS ***************************************************/
+    header {
+        flex-direction: column;
+        gap: 20px;
+        position: sticky;
+        
+        #nav-header {
+            margin-bottom: 40px;
+            margin-top: -15px;
+            /* row-gap: 10px; */
+            li{
+                border: 1px solid #eaeaea;
+                height: 40px;
+                font-size: 13px;
+            }
+            #login{
+                grid-column: 1/6;
+                border: none;           
+            }
+            .has-submenu{
+                .submenu.show {
+                    /* mostra quando ativado */
+                    top: 65%;
+                }
+		    }
+        }
+    }
+}

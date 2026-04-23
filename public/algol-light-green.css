@@ -1,0 +1,41 @@
+/* ******************************************************************************************* */
+/* TEMA GREEN ******************************************************************************** */
+/* ******************************************************************************************* */
+
+:root {
+    --theme-color-scheme: dark; /* dark ou light. para colorir componentes nativos do navegador*/
+
+    /* Acentos */
+    --accent-A:#3fbf7f;   /* verde principal */
+    --accent-B:#6ad4a6;   /* verde secundário */
+
+    /* Backgrounds */
+    --bg-A:#e9f4ef;
+    --bg-B:#dcebe4;
+    --bg-C:#c6dcd2;
+    --bg-D:#b0ccc0;
+    
+    /* Background componentes */
+    --bg-comp-A:#ffffff;
+    --bg-comp-dis-A:#8f9e98;
+
+    /* Bordas */
+    --border-A:#9bb4a8;
+    --border-B:var(--border-A);
+    --border-C:var(--border-A);
+
+    /* Texto */
+    --text-A:#0b1f17;
+    --text-B:#18362a;
+    --text-C:var(--text-A);
+    --text-dis-A:#4b5a54;
+
+    /* Ajustes visuais */
+    --comp-bright: 1.1;
+    --comp-dark: 0.9;
+
+    /* Overlay */
+    --overlay:#0b1f1799;
+
+    /* Variáveis customizadas adicionais podem ser adicionadas abaixo */
+}
