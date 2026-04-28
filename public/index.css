@@ -1,0 +1,77 @@
+algol-grid-layout,
+algol-grid-item {
+    width: 100%;
+    display: block;
+}
+
+.banner-content {
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.banner-title {
+    color: white;
+    font-size: 3em; 
+    line-height: 1.1;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    font-family: var(--font-roboto); 
+    font-weight: bold;
+}
+
+.banner-subtitle {
+    color: white;
+    font-weight: 500;
+    font-size: 1.2em;  /* Desktop: tamanho fixo */
+    text-shadow: 0px 2px 2px rgba(163, 151, 151, 0.5);
+    margin: 0;
+    font-family: var(--font-poppins);
+}
+
+.apresentation {
+
+    h2 {
+    font-family: var(--font-roboto);
+    font-size: 26px;
+    }
+
+    p {
+    font-family: var(--font-poppins);
+    font-size: 16px;
+    color: var(--color-text);
+    text-align: justify;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+    .banner-title {
+        font-size: 10vw;  
+        margin-bottom: 1vw;
+        text-shadow: 0 1vw 1vw rgba(0, 0, 0, 0.5);
+    }
+    
+    .banner-subtitle {
+        font-size: 4vw;
+        text-shadow: 0px 2px 2px rgba(163, 151, 151, 0.5);
+    }
+    
+    .banner-content {
+        padding: 0 1rem;
+    }
+    
+    .apresentation{
+        h2 {
+            font-size: 6vw;  /* Mude de 26px para 6vw */
+            margin-bottom: 3vw;
+        }
+    
+        p {
+            font-size: 3.5vw;  /* Mude de 16px para 3.5vw */
+            margin-bottom: 3vw;
+            line-height: 5vw;
+        }
+    }
+}

@@ -31,11 +31,11 @@ function addScript(src) {
 
 /** Carrega dinamicamente o conteúdo e os estilos do header */
 async function loadHeader(){
-    await injectHTML('/templates/header/header.html', '#header');
-    addStyle('/templates/header/header.css');
-    addStyle('/templates/header/header_tablet.css');
-    addStyle('/templates/header/header_phone.css');
-    addScript('/templates/header/header.js');
+    await injectHTML('templates/header/header.html', '#header');
+    addStyle('templates/header/header.css');
+    addStyle('templates/header/header_tablet.css');
+    addStyle('templates/header/header_phone.css');
+    addScript('templates/header/header.js');
 }
 
 /** Carrega dinamicamente o conteúdo e os estilos do footer */

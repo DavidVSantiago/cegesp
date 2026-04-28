@@ -1,28 +1,20 @@
-<a id="container-logo" href="/pages/index.html">
-	<img src="/imgs/logo-cegesp-desktop.png" alt="Logo CEGESP" />
-	<span>CEGESP</span>
-</a>
-
-<div id="menu-toggle" title="Menu mobile">
-	<span></span>
-	<span></span>
-	<span></span>
-</div>
-
-<nav id="nav-group">
-	<ul id="nav-header">
-		<li id="about" class="hover-btn has-submenu">
-			<a>
-				<span>SOBRE</span>
-				<img src="/imgs/icons/icon-chevron-down.png" alt="v" />
-			</a>
-			<ul id="about-menu" class="submenu">
-				<li><a href="/pages/objetivo/objetivo.html">OBJETIVO</a></li>
-				<li><a href="/pages/equipe/equipe.html">EQUIPE</a></li>
-			</ul>
-		</li>
-		<li class="hover-btn"><a href="/pages/infodados/infodados.html">INFO DADOS</a></li>
-		<li class="hover-btn"><a href="/pages/contato/contato.html">CONTATO</a></li>
-		<li id="login"><a id="login-a" href="#wordpress login page">LOGIN</a></li>
-	</ul>
-</nav>
+<algol-power-menu
+        logo="imgs/logo-cegesp-desktop.png"
+    logoalt="CEGESP"
+    logolink="/pages/index.html"
+    logowidth="91"
+    logoheight="100"
+    logosize="3.3vw"
+    logosizebreak="7vw"
+>
+   <li><a href="/pages/objetivo/objetivo.html">OBJETIVO</a></li>
+    <li><a href="/pages/equipe/equipe.html">EQUIPE</a></li>
+    
+    <li><a href="/pages/infodados/infodados.html">INFO DADOS</a></li>
+    <li><a href="/pages/contato/contato.html">CONTATO</a></li>
+    <li>
+       <a href="#wordpress login page">
+            <algol-button color="#007bff" textcolor="white">LOGIN</algol-button>
+        </a>
+    </li>
+</algol-power-menu>
