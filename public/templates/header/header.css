@@ -29,90 +29,14 @@ algol-power-menu {
             color: #007bff !important;
         }
     }
-
-    /* SUBMENU */
-    .menu-btns ul li.has-submenu {
-        position: relative;
-        overflow: visible;
-        display: flex;
-        flex-direction: column;
-
-        &:hover .submenu {
-            display: block !important;
-        }
-
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            background-color: #ffffff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            min-width: 140px;
-
-            li {
-                width: 100%;
-                min-height: auto;
-                margin: 0 !important;
-                padding: 0 !important;
-                background: transparent;
-
-                a {
-                    display: block;
-                    line-height: 1.5;
-                    padding: 8px 12px;
-                    text-decoration: none;
-                    color: var(--text-A) !important;
-                    font-size: 15px;
-                    width: 100%;
-                    background-color: #ffffff;
-                    transition: background 0.2s;
-
-                    &:hover {
-                        background-color: #eaeaea !important;
-                        color: var(--text-A) !important;
-                    }
-                }
-            }
-        }
-    }
 }
-
 
 @media (max-width: 600px) {
     algol-power-menu {
-        .menu {
-            .menu-btns {
-                background-color: white !important;
-            }
-
-            .menu-toggle span {
-                background: #333 !important;
-                height: 1.2vw !important;
-                width: 8vw !important;
-                margin: 1.5vw 0 !important;
-            }
-        }
-
-        .menu-btns ul li.has-submenu {
-            .submenu {
-                position: static;
-                width: 100%;
-                box-shadow: none;
-                display: block;
-                background-color: rgba(0, 0, 0, 0.03);
-
-                li a {
-                    font-size: calc(var(--font-size-break) * var(--scale-factor)) !important;
-                    padding: calc(1vw * var(--scale-factor)) !important;
-                    text-align: center;
-                    background-color: transparent;
-                }
-            }
+        
+        .menu .menu-btns, 
+        .menu .menu-btns ul {
+            background-color: white !important;
         }
     }
 }
