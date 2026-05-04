@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEGESP - InfoDados</title>
+    <script src="../../server_simulator.js"></script>
+    <script src="../../min.js"></script>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../algol-light-green.css">
+    <link rel="import" href="../../templates/header/header.html">
+    <link rel="import" href="../../templates/header/header.css">
+    <link rel="stylesheet" href="infodados.css">
+</head>
+<body>
+    <header id="header">CARREGADO DINAMICAMENTE!</header>
+
+    <main>
+        <algol-grid-layout cols="1fr" padding="0 5" paddingbreak="0 2">
+            <algol-grid-item posh="start">
+                <h2>ACESSO AOS DOCUMENTOS OFICIAIS</h2>
+                <algol-spacer value="3" valuebreak="2"></algol-spacer>
+
+                <form id="infodadosForm">
+                    <!-- Palavra-Chave -->
+                    <algol-select label="Palavra-Chave:" name="keyword" id="keyword" required>
+                        <option value="vacina">Vacina</option>
+                        <option value="esporte">Esporte</option>
+                        <option value="educacao">Educação</option>
+                    </algol-select>
+
+                    <!-- Esfera -->
+                    <algol-select label="Esfera:" name="esfera" id="esfera" required>
+                        <option value="f">Federal</option>
+                        <option value="e">Estadual</option>
+                        <option value="m">Municipal</option>
+                    </algol-select>
+
+                    <!-- UF-->
+                    <div id="ufGroup" class="hidden">
+                        <algol-select label="UF:" name="uf" id="uf"></algol-select>
+                    </div>
+
+                    <!-- Agrupamento -->
+                    <div id="agrupamentoGroup" class="hidden">
+                        <p class="form-label">Agrupamento:</p>
+                        <algol-radio name="agrupamento" id="pesquisaMunicipio" value="municipio" label="Pesquisa por município"></algol-radio>
+                        <algol-radio name="agrupamento" id="pesquisaTerritorio" value="territorio" label="Pesquisa por território"></algol-radio>
+                        <algol-spacer value="1.5"></algol-spacer>
+                    </div>
+
+                    <!-- Município -->
+                    <div id="municipioGroup" class="hidden">
+                        <algol-select label="Município:" name="municipio" id="municipio">
+                            <option value="jequie">Jequié</option>
+                            <option value="conquista">Vitória da Conquista</option>
+                            <option value="itagi">Itagi</option>
+                        </algol-select>
+                    </div>
+
+                    <!-- Poderes -->
+                    <algol-select label="Poder:" name="poder" id="poder" required>
+                        <option value="executivo">Executivo</option>
+                        <option value="legislativo">Legislativo</option>
+                        <option value="judiciario">Judiciário</option>
+                    </algol-select>
+
+                    <!-- Etapas -->
+                    <p class="form-label">Etapa:</p>
+                    <algol-grid-layout cols="repeat(3, auto)" gap="2" posh="start">
+                        <algol-radio name="etapa" value="planejamento" label="Planejamento" required></algol-radio>
+                        <algol-radio name="etapa" value="implementacao" label="Implementação"></algol-radio>
+                        <algol-radio name="etapa" value="avaliacao" label="Avaliação"></algol-radio>
+                    </algol-grid-layout>
+                    <algol-spacer value="2"></algol-spacer>
+
+                    <!-- Indicador -->
+                    <algol-select label="Indicador:" name="indicador" id="indicador">
+                        <option value="loa">LOA</option>
+                        <option value="ldo">LDO</option>
+                        <option value="ppa">PPA</option>
+                        <option value="decretos">Decretos</option>
+                    </algol-select>
+
+                    <!-- Série Histórica-->
+                    <p class="form-label">Série Histórica:</p>
+                    <algol-grid-layout cols="1fr 1fr" gap="2" posh="stretch">
+                        <algol-input-number label="Ano de Início:" name="start-year" min="1900" max="2100" placeholder="Ex: 2000"></algol-input-number>
+                        <algol-input-number label="Ano Final:" name="end-year" min="1900" max="2100" placeholder="Ex: 2025"></algol-input-number>
+                    </algol-grid-layout>
+
+                    <algol-spacer value="3"></algol-spacer>
+
+                    <algol-button type="submit" color="#007bff" textcolor="white" size="big">BUSCAR</algol-button>
+                </form>
+            </algol-grid-item>
+        </algol-grid-layout>
+        <algol-spacer value="5"></algol-spacer>
+    </main>
+
+    <footer id="footer">CARREGADO DINAMICAMENTE!</footer>
+</body>
+</html>

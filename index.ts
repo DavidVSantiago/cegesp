@@ -6,7 +6,8 @@ export const app = new Elysia()
         const routes: Record<string, string> = {
             '/': 'public/index.html',
             '/contatos': 'public/contatos.html',
-            '/sobre': 'public/sobre.html'
+            '/sobre': 'public/sobre.html',
+            '/infodados': 'public/infodados.html'
         };
 
         // Se a URL for uma das suas rotas, retorna o HTML correspondente
