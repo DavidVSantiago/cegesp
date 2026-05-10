@@ -39,10 +39,10 @@ async function loadHeader(){
 }
 /** Carrega dinamicamente o conteúdo e os estilos do footer */
 async function loadFooter(){
-    await injectHTML('/templates/footer/footer.html', '#footer');
-    addStyle('/templates/footer/footer.css');
-    addStyle('/templates/footer/footer_tablet.css');
-    addStyle('/templates/footer/footer_phone.css');
+    await injectHTML('templates/footer/footer.html', '#footer');
+    addStyle('templates/footer/footer.css');
+    addStyle('templates/footer/footer_tablet.css');
+    addStyle('templates/footer/footer_phone.css');
 
 }
 

@@ -1,29 +1,30 @@
-<section id="section-contacts">
-	<div class="contacts-item">
-		<img src="/imgs/icons/icon-phone.svg" alt="icon-phone" />
-		<a href=""><p>+55 (99) 12345-6789</p></a>
-	</div>
-	<div class="contacts-item">
-		<img src="/imgs/icons/icon-location.svg" alt="icon-loc" />
-		<a href="">
-			<p>
-				Departamento de Educação Física <br />
-				Jequiezinho, Jequié - BA
-			</p>
-		</a>
-	</div>
-	<div class="contacts-item">
-		<img src="/imgs/icons/icon-email.svg" alt="icon-mail" />
-		<a href=""><p>exemplo@exemplo.com</p></a>
-	</div>
-</section>
+<<footer class="footer-cegesp">
+    <algol-grid-layout cols="repeat(3, 1fr)" colsbreak="1fr" gap="4" padding="1.5 2" posh="stretch">
+        
+        <algol-grid-layout cols="1fr" colsbreak="8vw 1fr" gap="2" gapbreak="5" posh="center" poshbreak="start" posv="center">
+            <algol-image src="imgs/icons/icon-phone.svg" size="3" sizebreak="8" class="footer-icon"></algol-image>
+            <a href="tel:5599123456789"><p>+55 (99) 12345-6789</p></a>
+        </algol-grid-layout>
 
-<hr />
+        <algol-grid-layout cols="1fr" colsbreak="8vw 1fr" gap="2" gapbreak="5" posh="center" poshbreak="start" posv="center">
+            <algol-image src="imgs/icons/icon-location.svg" size="3" sizebreak="8" class="footer-icon"></algol-image>
+            <p>Departamento de Educação Física <br /> Jequiezinho, Jequié - BA</p>
+        </algol-grid-layout>
 
-<section id="section-copyright">
-	<p>Copyright 2025 © Todos os direitos reservados - Centro de Estudos em Gestão Pública</p>
-	<div id="section-images">
-		<img src="/imgs/logo-cegesp-name.png" alt="Logo CEGESP" />
-		<img src="/imgs/logo-uesb-name.png" alt="Logo UESB" />
-	</div>
-</section>
+        <algol-grid-layout cols="1fr" colsbreak="8vw 1fr" gap="2" gapbreak="5" posh="center" poshbreak="start" posv="center">
+            <algol-image src="imgs/icons/icon-email.svg" size="3" sizebreak="8" class="footer-icon"></algol-image>
+            <a href="mailto:exemplo@exemplo.com"><p>exemplo@exemplo.com</p></a>
+        </algol-grid-layout>
+
+    </algol-grid-layout>
+
+    <hr class="footer-divider" />
+
+    <algol-grid-layout cols="1fr" padding="1.5 2" posh="center" gap="2">
+        <p class="copyright-text">Copyright 2025 © Todos os direitos reservados - Centro de Estudos em Gestão Pública</p>
+        <algol-grid-layout cols="auto auto" gap="2" posh="center">
+            <algol-image src="imgs/logo-cegesp-name.png" size="8" sizebreak="25" class="footer-logo"></algol-image>
+            <algol-image src="imgs/logo-uesb-name.png" size="8" sizebreak="25" class="footer-logo"></algol-image>
+        </algol-grid-layout>
+    </algol-grid-layout>
+</footer>
