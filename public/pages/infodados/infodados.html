@@ -15,88 +15,73 @@
 <body>
     <header id="header">CARREGADO DINAMICAMENTE!</header>
 
-    <main>
+   <main>
         <algol-grid-layout cols="1fr" padding="0 5" paddingbreak="0 2">
-            <algol-grid-item posh="start">
-                <h2>ACESSO AOS DOCUMENTOS OFICIAIS</h2>
+            <algol-grid-item posh="center" width="100%">
+                
+                <h2 class="page-title">ACESSO AOS DOCUMENTOS OFICIAIS</h2>
                 <algol-spacer value="3" valuebreak="2"></algol-spacer>
 
-                <form id="infodadosForm">
-                    <!-- Palavra-Chave -->
-                    <algol-select label="Palavra-Chave:" name="keyword" id="keyword" required>
-                        <option value="vacina">Vacina</option>
-                        <option value="esporte">Esporte</option>
-                        <option value="educacao">Educação</option>
-                    </algol-select>
-
-                    <!-- Esfera -->
-                    <algol-select label="Esfera:" name="esfera" id="esfera" required>
-                        <option value="f">Federal</option>
-                        <option value="e">Estadual</option>
-                        <option value="m">Municipal</option>
-                    </algol-select>
-
-                    <!-- UF-->
-                    <div id="ufGroup" class="hidden">
-                        <algol-select label="UF:" name="uf" id="uf"></algol-select>
-                    </div>
-
-                    <!-- Agrupamento -->
-                    <div id="agrupamentoGroup" class="hidden">
-                        <p class="form-label">Agrupamento:</p>
-                        <algol-radio name="agrupamento" id="pesquisaMunicipio" value="municipio" label="Pesquisa por município"></algol-radio>
-                        <algol-radio name="agrupamento" id="pesquisaTerritorio" value="territorio" label="Pesquisa por território"></algol-radio>
-                        <algol-spacer value="1.5"></algol-spacer>
-                    </div>
-
-                    <!-- Município -->
-                    <div id="municipioGroup" class="hidden">
-                        <algol-select label="Município:" name="municipio" id="municipio">
-                            <option value="jequie">Jequié</option>
-                            <option value="conquista">Vitória da Conquista</option>
-                            <option value="itagi">Itagi</option>
+                <div class="form-container algol-bubble-01">
+                    <form id="infodadosForm">
+                        
+                        <p class="form-label">Palavra-Chave:</p>
+                        <algol-select name="keyword" id="keyword" required>
+                            <option value="vacina">Vacina</option>
                         </algol-select>
-                    </div>
 
-                    <!-- Poderes -->
-                    <algol-select label="Poder:" name="poder" id="poder" required>
-                        <option value="executivo">Executivo</option>
-                        <option value="legislativo">Legislativo</option>
-                        <option value="judiciario">Judiciário</option>
-                    </algol-select>
+                        <p class="form-label">Esfera:</p>
+                        <algol-select name="esfera" id="esfera" required>
+                            <option value="f">Federal</option>
+                            <option value="e">Estadual</option>
+                            <option value="m">Municipal</option>
+                        </algol-select>
 
-                    <!-- Etapas -->
-                    <p class="form-label">Etapa:</p>
-                    <algol-grid-layout cols="repeat(3, auto)" gap="2" posh="start">
-                        <algol-radio name="etapa" value="planejamento" label="Planejamento" required></algol-radio>
-                        <algol-radio name="etapa" value="implementacao" label="Implementação"></algol-radio>
-                        <algol-radio name="etapa" value="avaliacao" label="Avaliação"></algol-radio>
-                    </algol-grid-layout>
-                    <algol-spacer value="2"></algol-spacer>
+                        <div id="dynamic-fields">
+                            <div id="ufGroup" class="hidden">
+                                <p class="form-label">UF:</p>
+                                <algol-select name="uf" id="uf"></algol-select>
+                            </div>
+                            
+                            <div id="agrupamentoGroup" class="hidden">
+                                <p class="form-label">Agrupamento:</p>
+                                <algol-grid-layout cols="1fr 1fr" gap="1" gapbreak="0.5">
+                                    <algol-switch-radio name="agrupamento" value="municipio" label="Por município"></algol-switch-radio>
+                                    <algol-switch-radio name="agrupamento" value="territorio" label="Por território"></algol-switch-radio>
+                                </algol-grid-layout>
+                                <algol-spacer value="1.5"></algol-spacer>
+                            </div>
+                        </div>
 
-                    <!-- Indicador -->
-                    <algol-select label="Indicador:" name="indicador" id="indicador">
-                        <option value="loa">LOA</option>
-                        <option value="ldo">LDO</option>
-                        <option value="ppa">PPA</option>
-                        <option value="decretos">Decretos</option>
-                    </algol-select>
+                        <p class="form-label">Agenda</p>
+                        <algol-grid-layout cols="repeat(3, 1fr)" colsbreak="1fr" gap="1.5" posh="stretch">
+                            <algol-button size="medium" type="button" color="white" textcolor="#333" class="btn-filter">Executivo</algol-button>
+                            <algol-button size="medium" type="button" color="white" textcolor="#333" class="btn-filter">Legislativo</algol-button>
+                            <algol-button size="medium" type="button" color="white" textcolor="#333" class="btn-filter">Judiciário</algol-button>
+                        </algol-grid-layout>
 
-                    <!-- Série Histórica-->
-                    <p class="form-label">Série Histórica:</p>
-                    <algol-grid-layout cols="1fr 1fr" gap="2" posh="stretch">
-                        <algol-input-number label="Ano de Início:" name="start-year" min="1900" max="2100" placeholder="Ex: 2000"></algol-input-number>
-                        <algol-input-number label="Ano Final:" name="end-year" min="1900" max="2100" placeholder="Ex: 2025"></algol-input-number>
-                    </algol-grid-layout>
+                        <algol-spacer value="2"></algol-spacer>
 
-                    <algol-spacer value="3"></algol-spacer>
+                        <p class="form-label">Tipo de documento:</p>
+                        <algol-select name="indicador" id="indicador">
+                            <option value="loa">LOA</option>
+                        </algol-select>
 
-                    <algol-button type="submit" color="#007bff" textcolor="white" size="big">BUSCAR</algol-button>
-                </form>
+                        <p class="form-label">Período</p>
+                        <algol-grid-layout cols="1fr 1fr" colsbreak="1fr" gap="2" gapbreak="1" posh="stretch">
+                            <algol-input-number name="start-year" placeholder="Ano de Início: Ex 2000"></algol-input-number>
+                            <algol-input-number name="end-year" placeholder="Ano Final: Ex 2025"></algol-input-number>
+                        </algol-grid-layout>
+
+                        <algol-spacer value="3"></algol-spacer>
+
+                        <algol-button type="submit" color="#2d6fff" textcolor="white" size="big">Buscar</algol-button>
+                    </form>
+                </div>
             </algol-grid-item>
         </algol-grid-layout>
-        <algol-spacer value="5"></algol-spacer>
     </main>
+</algol-grid-item>
 
     <footer id="footer">CARREGADO DINAMICAMENTE!</footer>
 </body>

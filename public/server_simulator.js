@@ -37,7 +37,6 @@ async function loadHeader(){
     addStyle('templates/header/header_phone.css');
     addScript('templates/header/header.js');
 }
-
 /** Carrega dinamicamente o conteúdo e os estilos do footer */
 async function loadFooter(){
     await injectHTML('/templates/footer/footer.html', '#footer');

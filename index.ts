@@ -7,7 +7,7 @@ export const app = new Elysia()
             '/': 'public/index.html',
             '/contatos': 'public/contatos.html',
             '/sobre': 'public/sobre.html',
-            '/infodados': 'public/infodados.html'
+            '/infodados': 'public/pages/infodados/infodados.html'
         };
 
         // Se a URL for uma das suas rotas, retorna o HTML correspondente
