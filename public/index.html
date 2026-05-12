@@ -5,23 +5,49 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>CEGESP</title>
-	<script src="server_simulator.js"></script>
-	<script src="min.js"></script>
-	<link rel="stylesheet" href="global.css">
-	<link rel="stylesheet" href="algol-light-green.css">
-	<link rel="stylesheet" href="templates/header/header.css">
-	<link rel="stylesheet" href="index.css">
 
+	<!-- ELEMENTOS TEMPORÁRIOS -->
+	<script src="server_simulator.js" defer></script>
+
+	<!-- ELEMENTOS DA LIB ALGOL UI -->
+	<link rel="stylesheet" href="algol-light.css">
+	<link rel="stylesheet" href="templates/header/header.css">
+	<script src="min.js"></script>
+
+	<style>
+		main {
+			margin-top: 5vw;
+		}
+
+		.banner-title {
+			text-align: center;
+			color: white;
+			font-size: 4vw;
+		}
+
+		.banner-subtitle {
+			text-align: center;
+			color: white;
+			font-size: 1.5vw;
+		}
+
+		@media (max-width: 600px) {
+			main {
+				margin-top: 30vw;
+			}
+		}
+	</style>
 
 </head>
 
 <body>
 	<header id="header">CARREGADO DINAMICAMENTE!</header>
 
-	<main paddingbreak="10">
-		<algol-grid-layout cols="1fr" posh="stretch" padding="0" >
-			<algol-grid-item img="imgs/home-background.webp" imgsize="cover" imgpos="center" height="25" posh="center"
-				posv="center" padding="4" class="header2">
+	<main>
+		<!-- Banner da página -->
+		<algol-grid-layout cols="1fr" posh="stretch" padding="0">
+			<algol-grid-item img="/imgs/home-background.webp" imgsize="cover" imgpos="center" height="25" posh="stretch"
+				posv="center" padding="20vw 5vw" class="header2">
 
 				<div class="banner-content">
 					<h1 class="banner-title">CEGESP</h1>
@@ -30,33 +56,42 @@
 				</div>
 			</algol-grid-item>
 		</algol-grid-layout>
+		<!-- FIM do  Banner da página -->
 
 		<algol-spacer value="3" valuebreak="1"></algol-spacer>
 
-		
+
 
 		<algol-grid-layout cols="1fr" padding="0" class="apresentation" paddingbreak="0">
 			<algol-grid-item>
 				<h2>O que é o CEGESP?</h2>
 				<algol-spacer value="2" valuebreak="1"></algol-spacer>
-				<b><p>
-						O Centro de Estudos em Gestão Pública (CEGESP) da Universidade Estadual do Sudoeste da Bahia (UESB)
-						consolida-se como um núcleo estratégico voltado para a excelência administrativa e o fortalecimento
+				<b>
+					<p>
+						O Centro de Estudos em Gestão Pública (CEGESP) da Universidade Estadual do Sudoeste da Bahia
+						(UESB)
+						consolida-se como um núcleo estratégico voltado para a excelência administrativa e o
+						fortalecimento
 						das políticas governamentais. Operando na intersecção entre a pesquisa acadêmica e a prática
 						institucional, o centro dedica-se primordialmente ao desenvolvimento de soluções inovadoras que
-						promovam a transparência, a eficiência e a modernização do setor público. Suas frentes de atuação
-						abrangem desde o suporte técnico e a consultoria especializada até a criação de ferramentas digitais
+						promovam a transparência, a eficiência e a modernização do setor público. Suas frentes de
+						atuação
+						abrangem desde o suporte técnico e a consultoria especializada até a criação de ferramentas
+						digitais
 						projetadas para otimizar a governança e o controle social. Ao integrar docentes, pesquisadores e
 						discentes, o CEGESP fomenta a produção de conhecimento científico aplicado aos desafios
-						contemporâneos da gestão municipal e estadual, atuando como um braço de extensão que traduz o rigor
+						contemporâneos da gestão municipal e estadual, atuando como um braço de extensão que traduz o
+						rigor
 						acadêmico em benefícios diretos para a sociedade e para o aprimoramento democrático das
-						instituições. Através de seus projetos e parcerias, o centro busca não apenas diagnosticar gargalos
+						instituições. Através de seus projetos e parcerias, o centro busca não apenas diagnosticar
+						gargalos
 						estruturais, mas também implementar metodologias de gestão que priorizem o impacto social e a
 						responsabilidade fiscal, reafirmando o compromisso da UESB com o desenvolvimento regional e a
 						qualificação contínua dos agentes públicos.
-					</p></b>
-				</algol-grid-item>
-			</algol-grid-layout>
+					</p>
+				</b>
+			</algol-grid-item>
+		</algol-grid-layout>
 
 		<algol-spacer value="5" valuebreak="3"></algol-spacer>
 	</main>

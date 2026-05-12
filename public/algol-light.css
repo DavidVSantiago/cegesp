@@ -1,44 +1,45 @@
 /* ******************************************************************************************* */
-/* TEMA GREEN ******************************************************************************** */
+/* TEMA BLUE ********************************************************************************* */
 /* ******************************************************************************************* */
 
 :root {
-    --theme-color-scheme: dark;
+    --theme-color-scheme: light;
     /* dark ou light. para colorir componentes nativos do navegador*/
 
     /* Acentos */
-    --accent-A: #3fbf7f;
-    /* verde principal */
-    --accent-B: #6ad4a6;
-    /* verde secundário */
+    --accent-A: #2d6fff;
+    /* azul principal */
+    --accent-B: #5c8dff;
+    /* azul secundário */
 
     /* Backgrounds */
-    --bg-A: #e9f4ef;
-    --bg-B: #dcebe4;
-    --bg-C: #c6dcd2;
-    --bg-D: #b0ccc0;
+    --bg-A: #eff4ff;
+    --bg-B: #dfebff;
+    --bg-C: #ccdeff;
+    --bg-D: #b8d1ff;
 
     /* Background componentes */
     --bg-comp-A: #ffffff;
-    --bg-comp-dis-A: #8f9e98;
+    --bg-comp-dis-A: #939ea8;
 
     /* Bordas */
-    --border-A: #9bb4a8;
+    --border-A: #9db2cc;
     --border-B: var(--border-A);
     --border-C: var(--border-A);
 
     /* Texto */
-    --text-A: #0b1f17;
-    --text-B: #18362a;
+    --text-A: #0b182b;
+    --text-B: #162940;
     --text-C: var(--text-A);
-    --text-dis-A: #4b5a54;
+    /* No original verde ele herda text-A para o text-C */
+    --text-dis-A: #4c5766;
 
     /* Ajustes visuais */
     --comp-bright: 1.1;
     --comp-dark: 0.9;
 
     /* Overlay */
-    --overlay: #0b1f1799;
+    --overlay: #0b182b99;
 
     /* Variáveis customizadas adicionais podem ser adicionadas abaixo */
 }
