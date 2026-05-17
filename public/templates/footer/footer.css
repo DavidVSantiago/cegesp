@@ -1,7 +1,12 @@
 .footer-cegesp {
+    --color-dark-blue: #0b1e49;
+    --color-white-default: #fbfbfb;
+    --font-poppins: "Poppins", sans-serif;
+
     width: 100%;
     background-color: var(--color-dark-blue);
     margin-top: calc(2vw * var(--scale-factor));
+
 }
 
 .footer-cegesp p {
@@ -9,12 +14,21 @@
     color: var(--color-white-default);
     font-family: var(--font-poppins);
     line-height: 1.4;
+    text-align: center; 
+}
+
+.footer-cegesp a {
+    text-decoration: none;
+    color: var(--color-white-default);
+}
+
+.footer-cegesp a:hover {
+    text-decoration: underline; 
 }
 
 .footer-icon {
-    width: calc(3vw * var(--scale-factor));
-    height: calc(3vw * var(--scale-factor));
-    margin: 30px; 
+    --image-size: calc(3vw * var(--scale-factor));
+    margin: 0 auto !important; 
 }
 
 .footer-divider {
@@ -27,11 +41,15 @@
     font-size: calc(0.85vw * var(--scale-factor));
 }
 
+/* --- RESPONSIVIDADE (Celular) --- */
 @media (max-width: 600px) {
     .footer-cegesp p {
         font-size: 3.5vw;
+        text-align: left; 
     }
+    
     .copyright-text {
         font-size: 2.8vw;
+        text-align: center; 
     }
 }
