@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CEGESP - InfoDados</title>
 
-    <!-- ELEMENTOS TEMPORÁRIOS -->
     <script src="../../server_simulator.js" defer></script>
-
-    <!-- ELEMENTOS DA LIB ALGOL UI -->
     <link rel="stylesheet" href="../../algol-light.css">
     <link rel="stylesheet" href="../../templates/header/header.css">
     <script src="../../min.js"></script>
+    <script src="infodados.js" defer></script>
 
     <style>
         main {
@@ -21,11 +19,90 @@
 
         .page-title {
             text-align: center;
+            color: #2d6fff;
+            font-weight: 900;
+        }
+
+        .form-container {
+            max-width: calc(48vw * var(--scale-factor));
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5vw;
+        }
+
+        .form-label {
+            display: block;
+            margin-top: calc(1.5vw * var(--scale-factor));
+            margin-bottom: calc(0.8vw * var(--scale-factor));
+            font-size: calc(1.2vw * var(--scale-factor));
+            font-weight: bold;
+            color: #333;
+            font-family: var(--font-roboto);
+        }
+
+        .form-label:first-child {
+            margin-top: 0;
+        }
+
+        .radio-btn {
+            width: 100%;
+        }
+
+        .radio-btn label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: calc(0.6vw * var(--scale-factor)) calc(1.2vw * var(--scale-factor));
+            min-height: calc(2.4vw * var(--scale-factor));
+            border-radius: calc(var(--border-radius-components) * var(--scale-factor));
+            border: calc(0.1vw * var(--scale-factor)) solid #ccc;
+            background-color: white;
+            color: #333;
+            font-size: calc(0.9vw * var(--scale-factor));
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .radio-btn input[type="radio"] {
+            display: none;
+        }
+
+        .radio-btn input[type="radio"]:checked+label {
+            background-color: #2d6fff;
+            border-color: #2d6fff;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
         }
 
         @media (max-width: 600px) {
             main {
                 margin-top: 30vw;
+            }
+
+            .page-title {
+                font-size: 7vw;
+                line-height: 1.2;
+            }
+
+            .form-container {
+                max-width: 100%;
+                padding: 6vw;
+            }
+
+            .form-label {
+                font-size: 4.5vw;
+                margin-top: 5vw;
+                margin-bottom: 2vw;
+            }
+
+            .radio-btn label {
+                font-size: 3.8vw;
+                min-height: 10vw;
             }
         }
     </style>
@@ -36,21 +113,21 @@
 
     <main>
         <algol-grid-layout cols="1fr" padding="0 5" paddingbreak="0 2">
-            <algol-grid-item posh="center" width="100%">
+            <algol-grid-item posh="center">
 
                 <h2 class="page-title">ACESSO AOS DOCUMENTOS OFICIAIS</h2>
                 <algol-spacer value="3" valuebreak="2"></algol-spacer>
 
                 <div class="form-container algol-bubble-01">
                     <form id="infodadosForm">
-
+                    <!--PALAVRA CHAVE------------>
                         <p class="form-label">Palavra-Chave:</p>
                         <algol-select name="keyword" id="keyword" required>
                             <option value="vacina">Vacina</option>
                         </algol-select>
-
+                    <!-- ESFERA------------>   
                         <p class="form-label">Esfera:</p>
-                        <algol-select name="esfera" id="esfera" required>
+                        <algol-select name="esfera" id="esfera" value="f" required>
                             <option value="f">Federal</option>
                             <option value="e">Estadual</option>
                             <option value="m">Municipal</option>
@@ -61,40 +138,55 @@
                                 <p class="form-label">UF:</p>
                                 <algol-select name="uf" id="uf"></algol-select>
                             </div>
-
+                    <!--AGRUPAMENTO ------------>   
                             <div id="agrupamentoGroup" class="hidden">
                                 <p class="form-label">Agrupamento:</p>
+
                                 <algol-grid-layout cols="1fr 1fr" gap="1" gapbreak="0.5">
-                                    <algol-switch-radio name="agrupamento" value="municipio"
-                                        label="Por município"></algol-switch-radio>
-                                    <algol-switch-radio name="agrupamento" value="territorio"
-                                        label="Por território"></algol-switch-radio>
+                                    <algol-switch-radio name="agrupamento" value="municipio" label="Por município"></algol-switch-radio>
+                                    <algol-switch-radio name="agrupamento" value="territorio" label="Por território"></algol-switch-radio>
                                 </algol-grid-layout>
+
+                                <div id="municipioGroup" class="hidden">
+                                    <p class="form-label">Município:</p>
+                                    <algol-select name="municipio" id="municipio"></algol-select>
+                                </div>
+
+                                <div id="territorioGroup" class="hidden">
+                                    <p class="form-label">Território:</p>
+                                    <algol-select name="territorio" id="territorio"></algol-select>
+                                </div>
+                                
                                 <algol-spacer value="1.5"></algol-spacer>
                             </div>
                         </div>
-
+                    <!--AGENDA ------------>   
                         <p class="form-label">Agenda</p>
-                        <algol-grid-layout cols="repeat(3, 1fr)" colsbreak="1fr" gap="1.5" posh="stretch">
-                            <algol-button size="medium" type="button" color="white" textcolor="#333"
-                                class="btn-filter">Executivo</algol-button>
-                            <algol-button size="medium" type="button" color="white" textcolor="#333"
-                                class="btn-filter">Legislativo</algol-button>
-                            <algol-button size="medium" type="button" color="white" textcolor="#333"
-                                class="btn-filter">Judiciário</algol-button>
+                        <algol-grid-layout id="agendaGrid" cols="repeat(3, 1fr)" colsbreak="1fr" gap="3" posh="stretch">
+                            <div class="radio-btn">
+                                <input type="radio" name="poder" id="executivo" value="executivo" required>
+                                <label for="executivo">Executivo</label>
+                            </div>
+                            <div class="radio-btn">
+                                <input type="radio" name="poder" id="legislativo" value="legislativo">
+                                <label for="legislativo">Legislativo</label>
+                            </div>
+                            <div class="radio-btn" id="judiciarioContainer">
+                                <input type="radio" name="poder" id="judiciario" value="judiciario">
+                                <label for="judiciario">Judiciário</label>
+                            </div>
                         </algol-grid-layout>
 
                         <algol-spacer value="2"></algol-spacer>
-
+                    <!--TIPO DE DOCUMENTO ------------>   
                         <p class="form-label">Tipo de documento:</p>
                         <algol-select name="indicador" id="indicador">
                             <option value="loa">LOA</option>
                         </algol-select>
-
+                    <!--PERIODO ------------>   
                         <p class="form-label">Período</p>
                         <algol-grid-layout cols="1fr 1fr" colsbreak="1fr" gap="2" gapbreak="1" posh="stretch">
-                            <algol-input-number name="start-year"
-                                placeholder="Ano de Início: Ex 2000"></algol-input-number>
+                            <algol-input-number name="start-year" placeholder="Ano de Início: Ex 2000"></algol-input-number>
                             <algol-input-number name="end-year" placeholder="Ano Final: Ex 2025"></algol-input-number>
                         </algol-grid-layout>
 
@@ -106,7 +198,6 @@
             </algol-grid-item>
         </algol-grid-layout>
     </main>
-    </algol-grid-item>
 
     <footer id="footer">CARREGADO DINAMICAMENTE!</footer>
 </body>
