@@ -8,6 +8,7 @@ export const app = new Elysia()
             '/contatos': 'public/contatos/contatos.html',
             '/sobre': 'public/sobre.html',
             '/equipe': 'public/equipe/equipe.html',
+            '/objetivo': 'public/objetivo/objetivo.html',
             '/infodados': 'public/pages/infodados/infodados.html',
             '/login': 'public/login/login.html'
         };
