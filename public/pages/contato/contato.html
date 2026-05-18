@@ -13,45 +13,55 @@
     <script src="../../min.js"></script>
 
     <style>
-        main {
-            margin-top: 5vw;
-        }
+       main {
+        margin-top: 5vw;
+    }
 
         .page-title {
             text-align: center;
             color: #2d6fff;
             font-weight: 900;
             font-family: var(--font-roboto);
-            font-size: calc(2.2vw * var(--scale-factor));
+            font-size: 2.2vw;
             text-transform: uppercase;
         }
 
         .info-container {
-            max-width: calc(50vw * var(--scale-factor));
+            max-width: 50vw;
             width: 100%;
             margin: 0 auto;
             text-align: center;
         }
 
         .info-section {
-
             h3 {
-            background-color: #2d6fff;
-            color: white;
-            border-radius: 2vw 2vw 0 0 ;
-            padding: 1vw;
-            font-family: var(--font-roboto);
-            font-size: 1.5vw;
-            margin-bottom: 1vw;
-            margin-top: 2vw;
+                background-color: #2d6fff;
+                color: white;
+                border-radius: 2vw 2vw 0 0;
+                padding: 1vw;
+                font-family: var(--font-roboto);
+                font-size: 1.5vw;
+                margin: 2vw 0 0vw 0;
             }
 
-            p {
-            font-family: var(--font-poppins);
-            color: #333;
-            font-size: calc(1.2vw * var(--scale-factor));
-            line-height: 1.6;
-            margin: 0;
+            .card {
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                border-radius: 0 0 2vw 2vw;
+                padding: 1.5vw;
+
+                p {
+                    font-family: var(--font-poppins);
+                    color: #333;
+                    font-size: 1.2vw;
+                    line-height: 1.6;
+                    margin: 0;
+                }
+
+                b {
+                font-weight: 700;
+                color:#2d6fff;
+                }
             }
         }
 
@@ -69,14 +79,15 @@
                 max-width: 100%;
             }
 
-            .info-section h3 {
-                font-size: 5vw;
-                margin-top: 6vw;
-                margin-bottom: 3vw;
-            }
+            .info-section {
+                h3 {
+                    font-size: 5vw;
+                    margin: 6vw 0 3vw 0;
+                }
 
-            .info-section p {
-                font-size: 4vw;
+                .card p {
+                    font-size: 4vw;
+                }
             }
         }
     </style>
@@ -95,15 +106,19 @@
                 <div class="info-container">
                     <div class="info-section">
                         <h3>Canais de Atendimento</h3>
-                        <p> Telefone: +55 (99) 12345-6789</p>
-                        <p>E-mail: exemplo@exemplo.com</p>
+                        <div class="card">
+                            <p> <b>Telefone:</b> +55 (99) 12345-6789</p>
+                            <p> <b>E-mail:</b> exemplo@exemplo.com</p>
+                        </div>
                     </div>
 
                     <div class="info-section">
                         <h3>Endereço</h3>
-                        <p>Departamento de Educação Física</p>
-                        <p>Universidade Estadual do Sudoeste da Bahia (UESB)</p>
-                        <p>Jequiezinho, Jequié - BA</p>
+                        <div class="card">
+                            <p>Departamento de Educação Física</p>
+                            <p>Universidade Estadual do Sudoeste da Bahia (UESB)</p>
+                            <p>Jequiezinho, Jequié - BA</p>
+                        </div>
                     </div>
                 </div>
 

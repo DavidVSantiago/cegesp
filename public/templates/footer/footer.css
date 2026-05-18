@@ -5,7 +5,7 @@
 
     width: 100%;
     background-color: var(--color-dark-blue);
-    margin-top: calc(2vw * var(--scale-factor));
+    margin-top: 2vw;
 
 }
 
@@ -27,7 +27,7 @@
 }
 
 .footer-icon {
-    --image-size: calc(3vw * var(--scale-factor));
+    --image-size: 3vw;
     margin: 0 auto !important; 
 }
 
@@ -38,7 +38,7 @@
 }
 
 .copyright-text {
-    font-size: calc(0.85vw * var(--scale-factor));
+    font-size: 0.85vw;
 }
 
 /* --- RESPONSIVIDADE (Celular) --- */
