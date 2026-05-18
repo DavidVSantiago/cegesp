@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEGESP - Contato</title>
+
+    <script src="/server_simulator.js" defer></script>
+
+    <link rel="stylesheet" href="../../algol-light.css">
+    <link rel="stylesheet" href="../../templates/header/header.css">
+    <script src="../../min.js"></script>
+
+    <style>
+        main {
+            margin-top: 5vw;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #2d6fff;
+            font-weight: 900;
+            font-family: var(--font-roboto);
+            font-size: calc(2.2vw * var(--scale-factor));
+            text-transform: uppercase;
+        }
+
+        .info-container {
+            max-width: calc(50vw * var(--scale-factor));
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .info-section {
+
+            h3 {
+            background-color: #2d6fff;
+            color: white;
+            border-radius: 2vw 2vw 0 0 ;
+            padding: 1vw;
+            font-family: var(--font-roboto);
+            font-size: 1.5vw;
+            margin-bottom: 1vw;
+            margin-top: 2vw;
+            }
+
+            p {
+            font-family: var(--font-poppins);
+            color: #333;
+            font-size: calc(1.2vw * var(--scale-factor));
+            line-height: 1.6;
+            margin: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin-top: 30vw;
+            }
+
+            .page-title {
+                font-size: 7vw;
+                line-height: 1.2;
+            }
+
+            .info-container {
+                max-width: 100%;
+            }
+
+            .info-section h3 {
+                font-size: 5vw;
+                margin-top: 6vw;
+                margin-bottom: 3vw;
+            }
+
+            .info-section p {
+                font-size: 4vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">CARREGADO DINAMICAMENTE! NÃO MEXA!</header>
+
+    <main>
+        <algol-grid-layout cols="1fr" padding="0 5" paddingbreak="0 2">
+            <algol-grid-item posh="center">
+
+                <h2 class="page-title">Contato</h2>
+                <algol-spacer value="3" valuebreak="2"></algol-spacer>
+
+                <div class="info-container">
+                    <div class="info-section">
+                        <h3>Canais de Atendimento</h3>
+                        <p> Telefone: +55 (99) 12345-6789</p>
+                        <p>E-mail: exemplo@exemplo.com</p>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Endereço</h3>
+                        <p>Departamento de Educação Física</p>
+                        <p>Universidade Estadual do Sudoeste da Bahia (UESB)</p>
+                        <p>Jequiezinho, Jequié - BA</p>
+                    </div>
+                </div>
+
+                <algol-spacer value="5" valuebreak="3"></algol-spacer>
+            </algol-grid-item>
+        </algol-grid-layout>
+    </main>
+
+    <footer id="footer">CARREGADO DINAMICAMENTE! NÃO MEXA!</footer>
+</body>
+
+</html>

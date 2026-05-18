@@ -5,9 +5,11 @@ export const app = new Elysia()
         // 1. Mapeamento de Rotas do Servidor para Arquivos HTML
         const routes: Record<string, string> = {
             '/': 'public/index.html',
-            '/contatos': 'public/contatos.html',
+            '/contatos': 'public/contatos/contatos.html',
             '/sobre': 'public/sobre.html',
-            '/infodados': 'public/pages/infodados/infodados.html'
+            '/equipe': 'public/equipe/equipe.html',
+            '/infodados': 'public/pages/infodados/infodados.html',
+            '/login': 'public/login/login.html'
         };
 
         // Se a URL for uma das suas rotas, retorna o HTML correspondente
