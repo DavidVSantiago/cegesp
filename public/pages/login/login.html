@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEGESP - Login</title>
+
+    <script src="../../server_simulator.js" defer></script>
+
+    <link rel="stylesheet" href="../../algol-light.css">
+    <link rel="stylesheet" href="../../templates/header/header.css">
+    <script src="../../min.js"></script>
+</head>
+
+<body>
+    <header id="header">CARREGADO DINAMICAMENTE!</header>
+
+    <main>
+        <algol-spacer value="5vw" valuebreak="8"></algol-spacer>
+
+        <algol-grid-layout cols="1fr 1fr"
+            colsbreak="1fr"
+            gap="3vw"
+            padding="3"
+            posh="stretch"
+            class="algol-bubble-01"
+            style="overflow: hidden;">
+            
+            <algol-grid-item posh="stretch" posv="center">
+                <algol-grid-layout cols="1fr" gap="1.5vw" padding="0" posh="stretch">
+                    
+                    <h2 class="login-title" style="color: #2d6fff;">BEM-VINDO À PLATAFORMA CEGESP</h2>
+                    <p class="login-subtitle">Insira suas credenciais para acessar o painel do sistema.</p>
+                    
+                    <form id="loginForm">
+                        <algol-grid-layout cols="1fr" gap="1.5vw" padding="0" posh="stretch">
+                            
+                            <algol-input type="email" name="email" label="E-mail:" placeholder="usuario@uesb.br" required></algol-input>
+                            
+                            <algol-input type="password" name="password" label="Senha:" placeholder="Digite sua senha" required></algol-input>
+                            
+                            <algol-grid-layout
+                                cols="1fr auto"
+                                gap="1vw"
+                                padding="0"
+                                posh="stretch"
+                                posv="center">
+                                <algol-checkbox name="remember" label="Lembrar-me"></algol-checkbox>
+                                <algol-grid-item
+                                posh="end"
+                                posv="center">
+                                    <a href="#" class="forgot-link" style="text-decoration: none !important;">Esqueceu sua senha?</a>
+                                </algol-grid-item>
+                            </algol-grid-layout>
+                            
+                            <algol-spacer value="1"></algol-spacer>
+                            <algol-button type="submit" color="#2d6fff" textcolor="white" size="big">Entrar</algol-button>
+                            
+                        </algol-grid-layout>
+                    </form>
+                    
+                    <algol-spacer value="1"></algol-spacer>
+                    <p class="register-text">Não tem uma conta? <a href="#" style="text-decoration: none !important;">Solicitar acesso</a></p>
+                
+                </algol-grid-layout>
+            </algol-grid-item>
+            
+            <algol-grid-item color="#0b1e49"
+                img="/imgs/home-background.webp"
+                imgsize="cover" 
+                imgpos="center"
+                posh="stretch"
+                posv="stretch">
+            </algol-grid-item>
+            
+        </algol-grid-layout>
+        
+        <algol-spacer value="5" valuebreak="3"></algol-spacer>
+    </main>
+
+    <footer id="footer">CARREGADO DINAMICAMENTE!</footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Processando autenticação do usuário.');
+        });
+    </script>
+</body>
+</html>
