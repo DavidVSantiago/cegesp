@@ -43,3 +43,22 @@
 
     /* Variáveis customizadas adicionais podem ser adicionadas abaixo */
 }
+
+body{
+    background-color: #dedede;
+   
+    main{
+        margin: 5vw 10vw !important;
+        background-color: rgb(255, 255, 255);
+        padding: 3vw;
+    }
+}
+ 
+@media (max-width: 600px) {
+    body{
+        main{
+            margin: 35vw 0vw !important;
+            padding: 2vw;
+        }
+    }
+}
