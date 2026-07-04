@@ -30,6 +30,6 @@ export const app = new Elysia()
         set.status = 404;
         return '404 - Not Found';
     })
-    .listen(8080);
+    .listen(3001);
 
 console.log(`🦊 Servidor rodando em http://${app.server?.hostname}:${app.server?.port}`);

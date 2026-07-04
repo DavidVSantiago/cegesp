@@ -76,6 +76,7 @@ main {
             span {
                 font-family: var(--font-poppins);
                 color: white;
+                background-color: #2d6fff;
                 padding: 0.3vw 0.6vw;
                 font-size: 0.75vw;
                 text-align: center;
@@ -104,11 +105,7 @@ main {
         }
     }
 
-    &:nth-of-type(1) .card-infor span { background-color: #2d6fff; }
-    &:nth-of-type(2) .card-infor span, &:nth-of-type(4) .card-infor span { background-color: #ff4d4d; }
-    &:nth-of-type(3) .card-infor span { background-color: #2ecc71; }
-    &:nth-of-type(5) .card-infor span { background-color: #f1c40f; color: #333; }
-    &:nth-of-type(6) .card-infor span { background-color: #333; }
+    &:nth-of-type(1) .card-infor span { background-color: #ff4d4d;; }
 }
 
 .strong-name {
