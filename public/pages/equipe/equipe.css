@@ -20,7 +20,7 @@ main {
 .card-link {
     display: block;
     height: 28vw;
-    text-decoration: none;
+    cursor: pointer;
 
     .card {
         border-radius: var(--border-radius-layout);
@@ -45,22 +45,23 @@ main {
                 opacity: 1;
                 z-index: 9;
             }
-            img {
+
+            >img {
                 opacity: 0;
             }
         }
 
         .card-infor {
-            width: 12.5vw;
+            width: 16vw;
             position: absolute;
             border: 1vw solid white;
             box-shadow: 0vw 0.2vw 0.3vw rgba(0, 0, 0, 0.25);
             bottom: -1vw;
             right: -1vw;
             background-color: #f6f6f6;
-            padding: 0.6vw 0.8vw;
+            padding: 0.4vw 1.2vw 0.4vw 0.6vw;
             display: flex;
-            gap: 0.4vw;
+            gap: 0.3vw;
             flex-direction: column;
             align-items: flex-start;
             z-index: 10;
@@ -71,17 +72,19 @@ main {
                 color: #333;
                 margin: 0;
                 text-align: left;
+                white-space: nowrap;
             }
 
             span {
                 font-family: var(--font-poppins);
                 color: white;
                 background-color: #2d6fff;
-                padding: 0.3vw 0.6vw;
+                padding: 0.1vw 0.6vw;
                 font-size: 0.75vw;
                 text-align: center;
                 display: block;
                 border-radius: 0.3vw;
+                align-self: flex-end;
             }
         }
 
@@ -92,20 +95,61 @@ main {
             width: 100%;
             height: 100%;
             opacity: 0;
-            padding: 1.2vw;
+            padding: 0.7vw 1vw;
             transition: all 0.25s ease;
-            font-size: 0.9vw;
+            font-size: 0.85vw;
             font-family: var(--font-poppins);
             color: #333;
             box-sizing: border-box;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.5vw;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: var(--border-radius-layout);
+
+            p {
+                margin: 0;
+                text-align: justify;
+                line-height: 1.45;
+            }
         }
     }
 
-    &:nth-of-type(1) .card-infor span { background-color: #ff4d4d;; }
+    &:first-child .card-infor span {
+        background-color: #ff4d4d;
+    }
+}
+
+.card-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4vw 0.8vw;
+    margin-top: 0.2vw;
+
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3vw;
+        text-decoration: none;
+        color: #2d6fff;
+        font-size: 0.8vw;
+        font-family: var(--font-poppins);
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        .social-icon {
+            width: 1vw;
+            height: 1vw;
+            object-fit: contain;
+            filter: invert(33%) sepia(99%) saturate(1600%) hue-rotate(210deg) brightness(100%) contrast(105%);
+        }
+    }
 }
 
 .strong-name {
@@ -155,8 +199,27 @@ main {
             }
 
             .card-description {
-                font-size: 3.8vw;
-                padding: 5vw;
+                font-size: 3.5vw;
+                padding: 3.5vw 4vw;
+                gap: 2vw;
+
+                p {
+                    text-align: justify;
+                }
+            }
+
+            .card-social-links {
+                gap: 2vw 4vw;
+
+                .social-link {
+                    font-size: 3.2vw;
+                    gap: 1.5vw;
+
+                    .social-icon {
+                        width: 4.5vw;
+                        height: 4.5vw;
+                    }
+                }
             }
         }
     }
