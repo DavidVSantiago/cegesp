@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const territorioSelect = document.getElementById("territorio");
     
     const agrupamentoRadios = document.querySelectorAll('algol-switch-radio[name="agrupamento"]');
+    const politicasRadios = document.querySelectorAll('algol-switch-radio[name="politicas"]');
+    const etapaSelect = document.getElementById("etapa");
+    const themeSelect = document.getElementById("theme");
     
     const judiciarioContainer = document.getElementById("judiciarioContainer");
     const agendaGrid = document.getElementById("agendaGrid");
@@ -132,12 +135,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     form.addEventListener("submit", function (e) {
-        if (!validarAnos()) {
+        if (!validarFormulario()) {
             e.preventDefault();
             return;
         }
     });
 
+    function validarFormulario() {
+        const politicasSelecionada = document.querySelector('input[name="politicas"]:checked');
+        const temaSelecionado = themeSelect ? themeSelect.value : "";
+        const etapaSelecionada = etapaSelect ? etapaSelect.value : "";
+
+        if (!politicasSelecionada) {
+            alert("Selecione uma Política Pública.");
+            return false;
+        }
+        if (!temaSelecionado) {
+            alert("Selecione um Tema.");
+            return false;
+        }
+        if (!etapaSelecionada) {
+            alert("Selecione uma etapa da Política Pública.");
+            return false;
+        }
+        return true;
+    }
+
+    /*
     function validarAnos() {
         const startYear = document.querySelector('algol-input-number[name="start-year"]').value;
         const endYear = document.querySelector('algol-input-number[name="end-year"]').value;
@@ -153,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return true;
     }
+    */
 
     setTimeout(() => {
         const valorInicial = esferaSelect.value || "f";

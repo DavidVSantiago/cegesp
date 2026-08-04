@@ -121,11 +121,14 @@
 
                 <div class="form-container algol-bubble-01">
                     <form id="infodadosForm">
-                    <!--PALAVRA CHAVE------------>
-                        <p class="form-label">Palavra-Chave:</p>
-                        <algol-select name="keyword" id="keyword" required>
-                            <option value="vacina">Vacina</option>
-                        </algol-select>
+                    <!--POLÍTICAS PÚBLICAS------------>
+                        <p class="form-label">Políticas Públicas:</p>
+                        <algol-grid-layout cols="1fr 1fr" colsbreak="1fr" gap="3" posh="stretch">
+                            <algol-switch-radio name="politicas" value="saude" label="Saúde"></algol-switch-radio>
+                            <algol-switch-radio name="politicas" value="educacao" label="Educação"></algol-switch-radio>
+                            <algol-switch-radio name="politicas" value="esporte" label="Esporte"></algol-switch-radio>
+                            <algol-switch-radio name="politicas" value="seguranca" label="Segurança Pública"></algol-switch-radio>
+                        </algol-grid-layout>
                     <!-- ESFERA------------>   
                         <p class="form-label">Esfera:</p>
                         <algol-select name="esfera" id="esfera" value="f" required>
@@ -161,8 +164,8 @@
                                 <algol-spacer value="1.5"></algol-spacer>
                             </div>
                         </div>
-                    <!--AGENDA ------------>   
-                        <p class="form-label">Agenda</p>
+                    <!--PODERES ------------>   
+                        <p class="form-label">Poderes</p>
                         <algol-grid-layout id="agendaGrid" cols="repeat(3, 1fr)" colsbreak="1fr" gap="3" posh="stretch">
                             <div class="radio-btn">
                                 <input type="radio" name="poder" id="executivo" value="executivo" required>
@@ -178,18 +181,39 @@
                             </div>
                         </algol-grid-layout>
 
-                        <algol-spacer value="2"></algol-spacer>
-                    <!--TIPO DE DOCUMENTO ------------>   
+                        <algol-spacer value="1"></algol-spacer>
+
+                        <p class="form-label">Etapas da Políticas Públicas</p>
+                        <algol-select name="etapa" id="etapa" required>
+                            <option value="planejamento">Planejamento</option>
+                            <option value="implementacao">Implementação</option>
+                            <option value="avaliacao">Avaliação</option>
+                        </algol-select>
+
+                        <algol-spacer value="1"></algol-spacer>
+
+                        <p class="form-label">Tema</p>
+                        <algol-select name="theme" id="theme" required>
+                            <option value="esporte-de-rendimento">Esporte de rendimento</option>
+                            <option value="educacao-prisional">Educação Prisional</option>
+                            <option value="promocao-da-saude">Promoção da saúde</option>
+                            <option value="cultura-de-paz">Cultura de paz</option>
+                        </algol-select>
+
+                        <algol-spacer value="1"></algol-spacer>
+                    <!--TIPO DE DOCUMENTO 
+                       
                         <p class="form-label">Tipo de documento:</p>
                         <algol-select name="indicador" id="indicador">
                             <option value="loa">LOA</option>
                         </algol-select>
-                    <!--PERIODO ------------>   
+                    PERIODO 
                         <p class="form-label">Período</p>
                         <algol-grid-layout cols="1fr 1fr" colsbreak="1fr" gap="2" gapbreak="1" posh="stretch">
                             <algol-input-number name="start-year" placeholder="Ano de Início: Ex 2000"></algol-input-number>
                             <algol-input-number name="end-year" placeholder="Ano Final: Ex 2025"></algol-input-number>
                         </algol-grid-layout>
+                        -->
 
                         <algol-spacer value="3"></algol-spacer>
 
