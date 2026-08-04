@@ -93,6 +93,19 @@
             }
         }
 
+        .cards-grid {
+            justify-content: center;
+            justify-items: center;
+        }
+
+        @media (min-width: 601px) {
+            .cards-grid > .card:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                max-width: 40vw;
+            }
+        }
+
         @media (max-width: 600px) {
             main {
                 margin-top: 30vw;
@@ -165,7 +178,7 @@
 
             <algol-spacer value="4" valuebreak="3"></algol-spacer>
 
-            <algol-grid-layout cols="1fr 1fr" colsbreak="1fr" gap="4vw" padding="0" posh="stretch">
+            <algol-grid-layout class="cards-grid" cols="1fr 1fr" colsbreak="1fr" gap="4vw" padding="0" posh="stretch">
                 <section class="card">
                     <div class="icon-wrapper">
                         <img class="box-svg" src="/imgs/icons/bullseye-solid.svg" alt="Missão" />
@@ -192,7 +205,7 @@
 
                 <section class="card">
                     <div class="icon-wrapper">
-                        <img class="box-svg" src="/imgs/icons/bullseye-solid.svg" alt="Valores" />
+                        <img class="box-svg" src="/imgs/icons/handshake.svg" alt="Valores" />
                     </div>
                     <h2>Valores</h2>
                     <p>
@@ -204,7 +217,7 @@
 
                 <section class="card">
                     <div class="icon-wrapper">
-                        <img class="box-svg" src="/imgs/icons/bullseye-solid.svg" alt="Diretrizes" />
+                        <img class="box-svg" src="/imgs/icons/rudder.svg" alt="Diretrizes" />
                     </div>
                     <h2>Diretrizes</h2>
                     <p>
@@ -216,7 +229,7 @@
 
                 <section class="card">
                     <div class="icon-wrapper">
-                        <img class="box-svg" src="/imgs/icons/bullseye-solid.svg" alt="Metas" />
+                        <img class="box-svg" src="/imgs/icons/flag.svg" alt="Metas" />
                     </div>
                     <h2>Metas</h2>
                     <p>
