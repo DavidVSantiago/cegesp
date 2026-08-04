@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEGESP - Ensino</title>
+
+    <script src="../../server_simulator.js" defer></script>
+
+    <link rel="stylesheet" href="../../algol-light.css">
+    <link rel="stylesheet" href="../../templates/header/header.css">
+    <script src="../../min.js"></script>
+
+    <style>
+        main {
+            margin-top: 5vw;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #2d6fff;
+            font-weight: 900;
+            font-family: var(--font-roboto);
+            font-size: 2.2vw;
+            text-transform: uppercase;
+        }
+
+        .info-container {
+            max-width: 50vw;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .info-section {
+            h3 {
+                background-color: #2d6fff;
+                color: white;
+                border-radius: 2vw 2vw 0 0;
+                padding: 1vw;
+                font-family: var(--font-roboto);
+                font-size: 1.5vw;
+                margin: 2vw 0 0vw 0;
+            }
+
+            .card {
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                border-radius: 0 0 2vw 2vw;
+                padding: 1.5vw;
+
+                p {
+                    font-family: var(--font-poppins);
+                    color: #333;
+                    font-size: 1.2vw;
+                    line-height: 1.6;
+                    margin: 0;
+                }
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin-top: 30vw;
+            }
+
+            .page-title {
+                font-size: 7vw;
+                line-height: 1.2;
+            }
+
+            .info-container {
+                max-width: 100%;
+            }
+
+            .info-section {
+                h3 {
+                    font-size: 5vw;
+                    margin: 6vw 0 3vw 0;
+                }
+
+                .card p {
+                    font-size: 4vw;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">CARREGADO DINAMICAMENTE! NÃO MEXA!</header>
+
+    <main>
+        <algol-grid-layout cols="1fr" padding="0 5" paddingbreak="0 2">
+            <algol-grid-item posh="center">
+
+                <h2 class="page-title">Ensino</h2>
+                <algol-spacer value="3" valuebreak="2"></algol-spacer>
+
+                <div class="info-container">
+                    <div class="info-section">
+                        <h3>Formação e Capacitação</h3>
+                        <div class="card">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <algol-spacer value="5" valuebreak="3"></algol-spacer>
+            </algol-grid-item>
+        </algol-grid-layout>
+    </main>
+
+    <footer id="footer">CARREGADO DINAMICAMENTE! NÃO MEXA!</footer>
+</body>
+
+</html>

@@ -31,9 +31,62 @@
 			font-size: 1.5vw;
 		}
 
+		.page-links {
+			margin-top: 2vw;
+		}
+
+		.link-card {
+			display: block;
+			background-color: #ffffff;
+			border: 1px solid #d8e0f5;
+			border-radius: 1.5vw;
+			padding: 2vw;
+			text-decoration: none;
+			color: #333;
+			box-shadow: 0 0.3vw 0.6vw rgba(0, 0, 0, 0.08);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.link-card:hover {
+			transform: translateY(-0.3vw);
+			box-shadow: 0 0.6vw 1vw rgba(0, 0, 0, 0.12);
+		}
+
+		.link-card h3 {
+			color: #2d6fff;
+			font-family: var(--font-roboto);
+			font-size: 1.5vw;
+			margin: 0 0 1vw 0;
+		}
+
+		.link-card p {
+			font-family: var(--font-poppins);
+			font-size: 1.05vw;
+			line-height: 1.6;
+			margin: 0;
+		}
+
 		@media (max-width: 600px) {
 			main {
 				margin-top: 30vw;
+			}
+
+			.page-links {
+				grid-template-columns: 1fr !important;
+				gap: 4vw;
+			}
+
+			.link-card {
+				padding: 5vw;
+				border-radius: 3vw;
+			}
+
+			.link-card h3 {
+				font-size: 5vw;
+			}
+
+			.link-card p {
+				font-size: 3.5vw;
 			}
 		}
 	</style>
@@ -89,6 +142,23 @@
 						qualificação contínua dos agentes públicos.
 					</p>
 			</algol-grid-item>
+		</algol-grid-layout>
+
+		<algol-spacer value="4" valuebreak="2"></algol-spacer>
+
+		<algol-grid-layout cols="1fr 1fr 1fr" colsbreak="1fr" gap="2vw" padding="0" posh="stretch" class="page-links">
+			<a href="pages/ensino/ensino.html" class="link-card">
+				<h3 style="text-align: center;">Ensino</h3>
+				<p>Conheça as principais ações do CEGESP na formação e capacitação.</p>
+			</a>
+			<a href="pages/pesquisa/pesquisa.html" class="link-card">
+				<h3 style="text-align: center;">Pesquisa</h3>
+				<p>Descubra as linhas de pesquisa e produção de conhecimento.</p>
+			</a>
+			<a href="pages/extensao/extensao.html" class="link-card">
+				<h3 style="text-align: center;">Extensão</h3>
+				<p>Veja como o CEGESP atua em projetos com impacto social.</p>
+			</a>
 		</algol-grid-layout>
 
 		<algol-spacer value="5" valuebreak="3"></algol-spacer>
