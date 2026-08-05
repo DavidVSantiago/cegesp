@@ -45,6 +45,13 @@
             margin-top: 0;
         }
 
+        .politicas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1vw;
+            margin-bottom: 1vw;
+        }
+
         .radio-btn {
             width: 100%;
         }
@@ -54,8 +61,8 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 0.6vw 1.2vw;
-            min-height: 2.4vw;
+            padding: 0.8vw 1.2vw;
+            min-height: 3vw;
             border-radius: var(--border-radius-components);
             border: 0.1vw solid #ccc;
             background-color: white;
@@ -123,12 +130,24 @@
                     <form id="infodadosForm">
                     <!--POLÍTICAS PÚBLICAS------------>
                         <p class="form-label">Políticas Públicas:</p>
-                        <algol-grid-layout cols="1fr 1fr" colsbreak="1fr" gap="3" posh="stretch">
-                            <algol-switch-radio name="politicas" value="saude" label="Saúde"></algol-switch-radio>
-                            <algol-switch-radio name="politicas" value="educacao" label="Educação"></algol-switch-radio>
-                            <algol-switch-radio name="politicas" value="esporte" label="Esporte"></algol-switch-radio>
-                            <algol-switch-radio name="politicas" value="seguranca" label="Segurança Pública"></algol-switch-radio>
-                        </algol-grid-layout>
+                        <div class="politicas-grid">
+                            <div class="radio-btn">
+                                <input type="radio" name="politicas" id="saude" value="saude" required>
+                                <label for="saude">Saúde</label>
+                            </div>
+                            <div class="radio-btn">
+                                <input type="radio" name="politicas" id="educacao" value="educacao">
+                                <label for="educacao">Educação</label>
+                            </div>
+                            <div class="radio-btn">
+                                <input type="radio" name="politicas" id="esporte" value="esporte">
+                                <label for="esporte">Esporte</label>
+                            </div>
+                            <div class="radio-btn">
+                                <input type="radio" name="politicas" id="seguranca" value="seguranca">
+                                <label for="seguranca">Segurança Pública</label>
+                            </div>
+                        </div>
                     <!-- ESFERA------------>   
                         <p class="form-label">Esfera:</p>
                         <algol-select name="esfera" id="esfera" value="f" required>
