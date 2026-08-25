@@ -75,6 +75,28 @@ main {
     margin: 0;
 }
 
+.card-list {
+    font-family: var(--font-poppins);
+    font-size: 1.05vw;
+    line-height: 1.8;
+    color: #555;
+    text-align: left;
+    margin: 0;
+    padding-left: 1.2vw;
+    width: 100%;
+}
+
+.card-list li {
+    margin-bottom: 0.3vw;
+}
+
+.card-list strong,
+.card-list b,
+strong,
+b {
+    font-weight: 700 !important;
+}
+
 @media (max-width: 600px) {
     main {
         margin-top: 30vw;
@@ -108,5 +130,14 @@ main {
 
     .card p {
         font-size: 3.8vw;
+    }
+
+    .card-list {
+        font-size: 3.6vw;
+        padding-left: 4vw;
+    }
+
+    .card-list li {
+        margin-bottom: 1.5vw;
     }
 }

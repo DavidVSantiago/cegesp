@@ -43,6 +43,15 @@ main {
     margin: 0;
 }
 
+.areas-list {
+    font-family: var(--font-poppins);
+    color: #333;
+    font-size: 1.2vw;
+    line-height: 1.9;
+    margin: 0;
+    padding-left: 1.5vw;
+}
+
 @media (max-width: 600px) {
     main {
         margin-top: 30vw;
