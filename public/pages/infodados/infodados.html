@@ -33,7 +33,7 @@
 
         .form-label {
             display: block;
-            margin-top: 1.5vw;
+            margin-top: 0vw;
             margin-bottom: 0.8vw;
             font-size: 1.2vw;
             font-weight: bold;
@@ -73,6 +73,64 @@
             box-sizing: border-box;
         }
 
+        /* Ícones de Políticas Públicas */
+        .politicas-grid .radio-btn label {
+            justify-content: flex-start;
+            gap: 0.6vw;
+            font-weight: 600;
+            border-width: 0.15vw;
+        }
+
+        .politicas-grid .radio-btn label::before {
+            content: "";
+            display: inline-block;
+            width: 1.1vw;
+            height: 1.1vw;
+            flex-shrink: 0;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            transition: background-color 0.3s ease;
+        }
+
+        /* COR DO ÍCONE */
+        #educacao+label::before {
+            mask-image: url("../../imgs/icons/form-icons/educacao.svg");
+            -webkit-mask-image: url("../../imgs/icons/form-icons/educacao.svg");
+            background-color: #27ae60;
+        }
+
+        #saude+label::before {
+            mask-image: url("../../imgs/icons/form-icons/saude.svg");
+            -webkit-mask-image: url("../../imgs/icons/form-icons/saude.svg");
+            background-color: #5dade2;
+        }
+
+        #esporte+label::before {
+            mask-image: url("../../imgs/icons/form-icons/esporte.svg");
+            -webkit-mask-image: url("../../imgs/icons/form-icons/esporte.svg");
+            background-color: #e74c3c;
+        }
+
+        /* BORDAS E TEXTOS - BOTÕES*/
+        #educacao+label {
+            color: #27ae60;
+            border-color: #27ae6066;
+        }
+
+        #saude+label {
+            color: #5dade2;
+            border-color: #5dade266;
+        }
+
+        #esporte+label {
+            color: #e74c3c;
+            border-color: #e74c3c66;
+        }
+
         .radio-btn input[type="radio"] {
             display: none;
         }
@@ -83,8 +141,119 @@
             color: white;
         }
 
+
+        #educacao:checked+label {
+            background-color: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+
+        #educacao:checked+label::before {
+            background-color: white;
+        }
+
+        #saude:checked+label {
+            background-color: #5dade2;
+            border-color: #5dade2;
+            color: white;
+        }
+
+        #saude:checked+label::before {
+            background-color: white;
+        }
+
+        #esporte:checked+label {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+        }
+
+        #esporte:checked+label::before {
+            background-color: white;
+        }
+
         .hidden {
             display: none;
+        }
+
+        /*------- RESULTADOS------*/
+        .resultado-container {
+            width: min(100%, 48vw);
+            max-width: 100%;
+            margin: 2vw auto;
+            padding: 1.5vw;
+            border-radius: var(--border-radius-components);
+            background-color: #fff;
+            box-shadow: 0 0.4vw 1vw rgba(0,0,0,0.08);
+        }
+
+        .infodados-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2vw;
+            width: 100%;
+        }
+
+        .infodados-media {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 0.5vw;
+            border: 0.1vw solid #e0e0e0;
+        }
+
+        .infodados-footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 1vw;
+            border-top: 0.1vw solid #eee;
+        }
+
+        .doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5vw;
+            color: #2d6fff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1vw;
+        }
+
+        .doc-link:hover {
+            text-decoration: underline;
+        }
+
+        .doc-title-label {
+            display: block;
+            color: #333;
+            margin-bottom: 0.6vw;
+            font-size: 1.2vw;
+            font-weight: 500;
+            font-family: var(--font-roboto);
+            line-height: 1.4;
+        }
+
+        .doc-links-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4vw;
+        }
+
+        .doc-sublink {
+            color: #2d6fff;
+            font-size: 1.2vw;
+            font-family: var(--font-roboto);
+            text-decoration: none;
+            word-break: break-word;
+            transition: color 0.2s ease;
+            line-height: 1.4;
+        }
+
+        .doc-sublink:hover {
+            text-decoration: underline;
+            color: #1a4ebd;
         }
 
         @media (max-width: 600px) {
@@ -108,9 +277,38 @@
                 margin-bottom: 2vw;
             }
 
+            .resultado-container {
+                width: 100%;
+                max-width: 100%;
+                margin: 6vw auto;
+                padding: 4vw;
+            }
+
+            .doc-title-label,
+            .doc-sublink {
+                font-size: 4.5vw;
+            }
+
+            .doc-title-label {
+                margin-bottom: 2vw;
+            }
+
+            .doc-links-container {
+                gap: 2vw;
+            }
+
             .radio-btn label {
                 font-size: 3.8vw;
                 min-height: 10vw;
+            }
+
+            .politicas-grid .radio-btn label {
+                gap: 2vw;
+            }
+
+            .politicas-grid .radio-btn label::before {
+                width: 4.5vw;
+                height: 4.5vw;
             }
         }
     </style>
@@ -128,7 +326,7 @@
 
                 <div class="form-container algol-bubble-01">
                     <form id="infodadosForm">
-                    <!--POLÍTICAS PÚBLICAS------------>
+                        <!--POLÍTICAS PÚBLICAS------------>
                         <p class="form-label">Políticas Públicas:</p>
                         <div class="politicas-grid">
                             <div class="radio-btn">
@@ -143,6 +341,7 @@
                                 <input type="radio" name="politicas" id="esporte" value="esporte">
                                 <label for="esporte">Esporte</label>
                             </div>
+                            <!--
                             <div class="radio-btn">
                                 <input type="radio" name="politicas" id="lazer" value="lazer">
                                 <label for="lazer">Lazer</label>
@@ -151,10 +350,12 @@
                                 <input type="radio" name="politicas" id="seguranca" value="seguranca">
                                 <label for="seguranca">Segurança Pública</label>
                             </div>
+                            -->
                         </div>
-                    <!-- ESFERA------------>   
+                        <!-- ESFERA------------>
                         <p class="form-label">Esfera:</p>
-                        <algol-select name="esfera" id="esfera" value="f" required>
+                        <algol-select name="esfera" id="esfera" required>
+                            <option value="" disabled selected>Selecione a esfera</option>
                             <option value="f">Federal</option>
                             <option value="e">Estadual</option>
                             <option value="m">Municipal</option>
@@ -165,13 +366,15 @@
                                 <p class="form-label">UF:</p>
                                 <algol-select name="uf" id="uf"></algol-select>
                             </div>
-                    <!--AGRUPAMENTO ------------>   
+                            <!--AGRUPAMENTO ------------>
                             <div id="agrupamentoGroup" class="hidden">
                                 <p class="form-label">Agrupamento:</p>
 
                                 <algol-grid-layout cols="1fr 1fr" gap="1" gapbreak="0.5">
-                                    <algol-switch-radio name="agrupamento" value="municipio" label="Por município"></algol-switch-radio>
-                                    <algol-switch-radio name="agrupamento" value="territorio" label="Por território"></algol-switch-radio>
+                                    <algol-switch-radio name="agrupamento" value="municipio"
+                                        label="Por município"></algol-switch-radio>
+                                    <algol-switch-radio name="agrupamento" value="territorio"
+                                        label="Por território"></algol-switch-radio>
                                 </algol-grid-layout>
 
                                 <div id="municipioGroup" class="hidden">
@@ -183,11 +386,11 @@
                                     <p class="form-label">Território:</p>
                                     <algol-select name="territorio" id="territorio"></algol-select>
                                 </div>
-                                
+
                                 <algol-spacer value="1.5"></algol-spacer>
                             </div>
                         </div>
-                    <!--PODERES ------------>   
+                        <!--PODERES ------------>
                         <p class="form-label">Poderes</p>
                         <algol-grid-layout id="agendaGrid" cols="repeat(3, 1fr)" colsbreak="1fr" gap="3" posh="stretch">
                             <div class="radio-btn">
@@ -208,6 +411,7 @@
 
                         <p class="form-label">Etapas da Políticas Públicas</p>
                         <algol-select name="etapa" id="etapa" required>
+                            <option value="" disabled selected>Selecione a etapa</option>
                             <option value="planejamento">Planejamento</option>
                             <option value="implementacao">Implementação</option>
                             <option value="avaliacao">Avaliação</option>
@@ -217,14 +421,10 @@
 
                         <p class="form-label">Tema</p>
                         <algol-select name="theme" id="theme" required>
-                            <option value="esporte-de-rendimento">Esporte de rendimento</option>
-                            <option value="educacao-prisional">Educação Prisional</option>
-                            <option value="promocao-da-saude">Promoção da saúde</option>
-                            <option value="cultura-de-paz">Cultura de paz</option>
                         </algol-select>
 
                         <algol-spacer value="1"></algol-spacer>
-                    <!--TIPO DE DOCUMENTO 
+                        <!--TIPO DE DOCUMENTO 
                        
                         <p class="form-label">Tipo de documento:</p>
                         <algol-select name="indicador" id="indicador">
@@ -243,6 +443,12 @@
                         <algol-button type="submit" color="#2d6fff" textcolor="white" size="big">Buscar</algol-button>
                     </form>
                 </div>
+
+                <algol-grid-layout cols="1fr" padding="0" posh="stretch">
+                    <algol-grid-item posh="stretch">
+                        <div id="resultadoInfodados" class="resultado-container algol-bubble-01"></div>
+                    </algol-grid-item>
+                </algol-grid-layout>
             </algol-grid-item>
         </algol-grid-layout>
     </main>

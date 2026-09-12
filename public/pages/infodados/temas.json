@@ -1,0 +1,30 @@
+{
+  "educacao": [
+    "educação integral",
+    "formação de professores",
+    "educação em prisões",
+    "educação profissional e tecnológica",
+    "educação superior"
+  ],
+  "saude": [
+    "promoção da saúde",
+    "práticas corporais e atividades físicas",
+    "mobilidade segura",
+    "cultura de paz",
+    "desenvolvimento sustentável",
+    "enfrentamento do uso do tabaco",
+    "enfrentamento do uso do álcool e drogas",
+    "formação e educação permanente em saúde",
+    "alimentação adequada e saudável",
+    "saúde da criança",
+    "cuidados paliativos",
+    "imunização",
+    "práticas integrativas e complementares em saúde"
+  ],
+  "esporte": [
+    "esporte universitário",
+    "esporte de aventura",
+    "esporte feminino",
+    "racismo no esporte"
+  ]
+}

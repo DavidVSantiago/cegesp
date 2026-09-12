@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const form = document.getElementById("infodadosForm");
     const esferaSelect = document.getElementById("esfera");
     const ufGroup = document.getElementById("ufGroup");
@@ -11,73 +11,229 @@ document.addEventListener("DOMContentLoaded", function () {
     const territorioSelect = document.getElementById("territorio");
     
     const agrupamentoRadios = document.querySelectorAll('algol-switch-radio[name="agrupamento"]');
-    const politicasRadios = document.querySelectorAll('algol-switch-radio[name="politicas"]');
     const etapaSelect = document.getElementById("etapa");
     const themeSelect = document.getElementById("theme");
     
     const judiciarioContainer = document.getElementById("judiciarioContainer");
     const agendaGrid = document.getElementById("agendaGrid");
+    const resultadoContainer = document.getElementById("resultadoInfodados");
 
-    const dadosPesquisa = {
-        ufs: [
-            { id: "ba", nome: "Bahia" },
-            { id: "sp", nome: "São Paulo" }
-        ],
-        municipios: {
-            "ba": [
-                { id: "jequie", nome: "Jequié" },
-                { id: "vitoria_conquista", nome: "Vitória da Conquista" },
-                { id: "ipiau", nome: "Ipiaú" },
-                { id: "itagi", nome: "Itagi" }
-            ],
-            "sp": [
-                { id: "campinas", nome: "Campinas" }
-            ]
-        },
-        territorios: {
-            "ba": [
-                { id: "medio_rio_contas", nome: "Médio Rio de Contas" },
-                { id: "sudoeste", nome: "Sudoeste Baiano" }
-            ],
-            "sp": [
-                { id: "rmc", nome: "Região Metropolitana de Campinas" }
-            ]
+    const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1nXfiJcw04JkZOz6rsFhn45lRAt-GliBMWmF9S1AySIo/gviz/tq?tqx=out:csv";
+
+    let acervoPlanilha = [];
+    let mapaTemas = {};
+
+    //Carrega JSON de temas pra cada politica publica
+
+    async function carregarMapaTemas() {
+        try {
+            const response = await fetch("temas.json");
+            if (!response.ok) throw new Error("Erro ao carregar temas.json");
+            mapaTemas = await response.json();
+        } catch (error) {
+            console.error("Erro ao carregar arquivo de temas:", error);
         }
-    };
+    }
 
-    function carregarUFs() {
-        ufSelect.innerHTML = '<option value="" disabled selected>Selecione um estado</option>';
-        dadosPesquisa.ufs.forEach(uf => {
-            const option = document.createElement("option");
-            option.value = uf.id;
-            option.textContent = `${uf.id.toUpperCase()} - ${uf.nome}`;
-            ufSelect.appendChild(option);
+    function atualizarSelectTemas(politicaSelecionada) {
+        if (!themeSelect) return;
+
+        let optionsHTML = '<option value="" disabled selected>Selecione um Tema</option>';
+        const listaTemas = mapaTemas[politicaSelecionada] || [];
+
+        if (listaTemas.length === 0) {
+            optionsHTML += '<option value="" disabled>Nenhum tema encontrado para esta política</option>';
+        } else {
+            listaTemas.forEach(tema => {
+                optionsHTML += `<option value="${tema}">${tema}</option>`;
+            });
+        }
+
+        themeSelect.innerHTML = optionsHTML;
+    }
+
+    //===============================================
+
+    // NORMALIZAÇÃO DE TEXTo
+//remove acentos, converte para minúsculas, remove hífens/underscores e espaços duplicados
+   function normalizarTexto(texto) {
+    if (!texto) return "";
+    let str = String(texto)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[-_]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (str === "f") return "federal";
+    if (str === "e") return "estadual";
+    if (str === "m") return "municipal";
+
+    return str;
+}
+
+    function parseCSVLine(line) {
+        const result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                result.push(cur.trim().replace(/^"|"$/g, ''));
+                cur = '';
+            } else {
+                cur += char;
+            }
+        }
+        result.push(cur.trim().replace(/^"|"$/g, ''));
+        return result;
+    }
+
+    async function carregarDadosPlanilha() {
+        try {
+            const response = await fetch(SPREADSHEET_CSV_URL);
+            if (!response.ok) throw new Error("Erro ao carregar dados da planilha");
+            
+            const csvText = await response.text();
+            const linhas = csvText.split("\n").map(l => l.trim()).filter(Boolean);
+            if (linhas.length < 2) return [];
+
+            const cabecalhos = parseCSVLine(linhas[0]).map(h => normalizarTexto(h));
+            
+            return linhas.slice(1).map(linha => {
+                const valores = parseCSVLine(linha);
+                const objeto = {};
+                cabecalhos.forEach((coluna, idx) => {
+                    objeto[coluna] = valores[idx] || "";
+                });
+                return objeto;
+            });
+        } catch (error) {
+            console.error("Erro no carregamento do Google Sheets:", error);
+            return null;
+        }
+    }
+
+    function getValPlanilha(item, ...chaves) {
+        for (const chave of chaves) {
+            const normChave = normalizarTexto(chave);
+            if (item[normChave] !== undefined) {
+                return item[normChave];
+            }
+        }
+        return "";
+    }
+
+    //=============================================
+
+    //FILTRAGEM
+
+    function extrairFiltrosFormulario() {
+        const politicaEl = document.querySelector('input[name="politicas"]:checked');
+        const poderEl = document.querySelector('input[name="poder"]:checked');
+        
+        const getVal = (el) => el ? (el.value || el.getAttribute("value") || "") : "";
+
+        return {
+            politica: politicaEl ? politicaEl.value : "",
+            esfera: getVal(esferaSelect),
+            uf: getVal(ufSelect),
+            municipio: getVal(municipioSelect),
+            territorio: getVal(territorioSelect),
+            poder: poderEl ? poderEl.value : "",
+            etapa: getVal(etapaSelect),
+            theme: getVal(themeSelect)
+        };
+    }
+
+    function filtrarRegistros(dados, filtros) {
+        return dados.filter(item => {
+            const itemPolitica = getValPlanilha(item, "politica_publica", "politica");
+            const itemTema = getValPlanilha(item, "tema", "theme");
+            const itemEsfera = getValPlanilha(item, "esfera");
+            const itemUf = getValPlanilha(item, "uf");
+            const itemMunicipio = getValPlanilha(item, "municipio");
+            const itemTerritorio = getValPlanilha(item, "territorio");
+            const itemPoder = getValPlanilha(item, "poder");
+            const itemEtapa = getValPlanilha(item, "etapa");
+
+            if (filtros.politica && normalizarTexto(itemPolitica) !== normalizarTexto(filtros.politica)) return false;
+            if (filtros.esfera && normalizarTexto(itemEsfera) !== normalizarTexto(filtros.esfera)) return false;
+            if (filtros.uf && normalizarTexto(itemUf) !== normalizarTexto(filtros.uf)) return false;
+            if (filtros.municipio && normalizarTexto(itemMunicipio) !== normalizarTexto(filtros.municipio)) return false;
+            if (filtros.territorio && normalizarTexto(itemTerritorio) !== normalizarTexto(filtros.territorio)) return false;
+            if (filtros.poder && normalizarTexto(itemPoder) !== normalizarTexto(filtros.poder)) return false;
+            if (filtros.etapa && normalizarTexto(itemEtapa) !== normalizarTexto(filtros.etapa)) return false;
+            if (filtros.theme && normalizarTexto(itemTema) !== normalizarTexto(filtros.theme)) return false;
+
+            return true;
         });
     }
 
-    function carregarMunicipios(ufId) {
-        municipioSelect.innerHTML = '<option value="" disabled selected>Selecione um município</option>';
-        if (dadosPesquisa.municipios[ufId]) {
-            dadosPesquisa.municipios[ufId].forEach(mun => {
-                const option = document.createElement("option");
-                option.value = mun.id;
-                option.textContent = mun.nome;
-                municipioSelect.appendChild(option);
-            });
-        }
+    //RENDERIZAÇÃO 
+
+    function renderizarResultado(resultados) {
+    if (!resultadoContainer) return;
+
+    if (resultados === null) {
+        resultadoContainer.innerHTML = `
+            <div style="text-align: center; padding: 2vw; color: #e74c3c;">
+                <p>Erro ao conectar com a planilha. Verifique as permissões de acesso.</p>
+            </div>
+        `;
+        return;
     }
 
-    function carregarTerritorios(ufId) {
-        territorioSelect.innerHTML = '<option value="" disabled selected>Selecione um território</option>';
-        if (dadosPesquisa.territorios[ufId]) {
-            dadosPesquisa.territorios[ufId].forEach(ter => {
-                const option = document.createElement("option");
-                option.value = ter.id;
-                option.textContent = ter.nome;
-                territorioSelect.appendChild(option);
-            });
-        }
+    if (resultados.length === 0) {
+        resultadoContainer.innerHTML = `
+            <div style="text-align: center; padding: 2vw; color: #666;">
+                <p>Nenhum infográfico encontrado para os filtros selecionados.</p>
+            </div>
+        `;
+        resultadoContainer.scrollIntoView({ behavior: 'smooth' });
+        return;
     }
+
+    const htmlCards = resultados.map(item => {
+        const rawLinks = getValPlanilha(item, "url_doc_oficial", "url_documento", "url_documento_oficial") || "#";
+        const tituloDoc = getValPlanilha(item, "titulo_documento") || "Documento Oficial";
+        const imgInfografico = getValPlanilha(item, "url_infografico") || "";
+
+        // Divide múltiplos links separados por vírgula na mesma célula
+        const linksArray = rawLinks.split(',').map(link => link.trim()).filter(Boolean);
+
+        const linksMarkup = linksArray.map((link, index) => {
+            const rotuloLink = linksArray.length > 1 ? `Link ${index + 1}: ${link}` : link;
+            return `
+                <a href="${link}" target="_blank" rel="noopener noreferrer" class="doc-sublink">
+                    🔗 ${rotuloLink}
+                </a>
+            `;
+        }).join('');
+
+        return `
+            <article class="infodados-card algol-bubble-01">
+                <img class="infodados-media" src="${imgInfografico}" alt="Infográfico" />
+                <footer class="infodados-footer">
+                    <p class="doc-title-label">📄 Acessar Documento Oficial: <strong>${tituloDoc}</strong></p>
+                    <div class="doc-links-container">
+                        ${linksMarkup}
+                    </div>
+                </footer>
+            </article>
+        `;
+    }).join("<hr style='margin: 2vw 0; border: none; border-top: 0.1vw solid #eee;' />");
+
+    resultadoContainer.innerHTML = htmlCards;
+    resultadoContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+    // ==========================================
+
+    // 4. EVENTOS DA INTERFACE
 
     function atualizarCamposFormulario(esferaValue) {
         if (!judiciarioContainer || !agendaGrid) return;
@@ -87,20 +243,20 @@ document.addEventListener("DOMContentLoaded", function () {
         municipioGroup.classList.add("hidden");
         territorioGroup.classList.add("hidden");
 
-        if (esferaValue === "f") {
+        const esferaNorm = normalizarTexto(esferaValue);
+
+        if (esferaNorm === "federal") {
             judiciarioContainer.style.display = "block";
             agendaGrid.setAttribute("cols", "repeat(3, 1fr)");
-        } else if (esferaValue === "e") {
+        } else if (esferaNorm === "estadual") {
             ufGroup.classList.remove("hidden");
             judiciarioContainer.style.display = "none";
             agendaGrid.setAttribute("cols", "repeat(2, 1fr)");
-            carregarUFs();
-        } else if (esferaValue === "m") {
+        } else if (esferaNorm === "municipal") {
             ufGroup.classList.remove("hidden");
             agrupamentoGroup.classList.remove("hidden"); 
             judiciarioContainer.style.display = "none";
             agendaGrid.setAttribute("cols", "repeat(2, 1fr)");
-            carregarUFs();
         }
     }
 
@@ -108,21 +264,9 @@ document.addEventListener("DOMContentLoaded", function () {
         atualizarCamposFormulario(e.detail.value);
     });
 
-    ufSelect.addEventListener("algol-change", function (e) {
-        const ufEscolhida = e.detail.value;
-        if (ufEscolhida) {
-            carregarMunicipios(ufEscolhida);
-            carregarTerritorios(ufEscolhida);
-        } else {
-            municipioSelect.innerHTML = '';
-            territorioSelect.innerHTML = '';
-        }
-    });
-
     agrupamentoRadios.forEach(radio => {
         radio.addEventListener("algol-input", function (e) {
             const escolha = e.detail.value;
-            
             municipioGroup.classList.add("hidden");
             territorioGroup.classList.add("hidden");
 
@@ -134,17 +278,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    form.addEventListener("submit", function (e) {
-        if (!validarFormulario()) {
-            e.preventDefault();
-            return;
-        }
+    //Filtra temas para cada politica publica
+    const politicasInputs = document.querySelectorAll('input[name="politicas"]');
+    politicasInputs.forEach(input => {
+        input.addEventListener("change", function () {
+            if (this.checked) {
+                atualizarSelectTemas(this.value);
+            }
+        });
     });
 
     function validarFormulario() {
         const politicasSelecionada = document.querySelector('input[name="politicas"]:checked');
-        const temaSelecionado = themeSelect ? themeSelect.value : "";
-        const etapaSelecionada = etapaSelect ? etapaSelect.value : "";
+        const temaSelecionado = themeSelect ? (themeSelect.value || themeSelect.getAttribute("value")) : "";
+        const etapaSelecionada = etapaSelect ? (etapaSelect.value || etapaSelect.getAttribute("value")) : "";
 
         if (!politicasSelecionada) {
             alert("Selecione uma Política Pública.");
@@ -161,26 +308,35 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
-    /*
-    function validarAnos() {
-        const startYear = document.querySelector('algol-input-number[name="start-year"]').value;
-        const endYear = document.querySelector('algol-input-number[name="end-year"]').value;
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-        if (startYear !== "" && endYear !== "") {
-            const anoInicio = parseInt(startYear);
-            const anoFim = parseInt(endYear);
+        if (!validarFormulario()) return;
 
-            if (anoInicio > anoFim) {
-                alert("O ano inicial não pode ser maior que o ano final!");
-                return false;
-            }
-        }
-        return true;
+        const filtros = extrairFiltrosFormulario();
+        const resultados = filtrarRegistros(acervoPlanilha, filtros);
+        renderizarResultado(resultados);
+    });
+
+    // =============================================
+
+    // INICIALIZAÇÃO
+
+    await carregarMapaTemas();
+
+    const dados = await carregarDadosPlanilha();
+    if (dados) {
+        acervoPlanilha = dados;
     }
-    */
+
+    //Se ja tiver alguma política marcada no carregamento, atualiza os temas
+    const politicaInicial = document.querySelector('input[name="politicas"]:checked');
+    if (politicaInicial) {
+        atualizarSelectTemas(politicaInicial.value);
+    }
 
     setTimeout(() => {
-        const valorInicial = esferaSelect.value || "f";
+        const valorInicial = esferaSelect.value || esferaSelect.getAttribute("value") || "f";
         atualizarCamposFormulario(valorInicial);
     }, 150);
 });
