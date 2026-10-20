@@ -178,6 +178,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     function renderizarResultado(resultados) {
     if (!resultadoContainer) return;
 
+    resultadoContainer.hidden = false;
+
     if (resultados === null) {
         resultadoContainer.innerHTML = `
             <div style="text-align: center; padding: 2vw; color: #e74c3c;">
