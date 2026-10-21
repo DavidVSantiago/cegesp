@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             <article class="infodados-card algol-bubble-01">
                 <img class="infodados-media" src="${imgInfografico}" alt="Infográfico" />
                 <footer class="infodados-footer">
-                    <p class="doc-title-label">📄 Acessar Documento Oficial: <strong>${tituloDoc}</strong></p>
+                    <p class="doc-title-label"> Acessar Documento Oficial: <strong>${tituloDoc}</strong></p>
                     <div class="doc-links-container">
                         ${linksMarkup}
                     </div>

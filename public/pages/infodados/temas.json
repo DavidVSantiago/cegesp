@@ -1,30 +1,30 @@
 {
   "educacao": [
-    "educação integral",
-    "formação de professores",
-    "educação em prisões",
-    "educação profissional e tecnológica",
-    "educação superior"
+    "Educação Integral",
+    "Formação de Professores",
+    "Educação em Prisões",
+    "Educação Profissional e Tecnológica",
+    "Educação Superior"
   ],
   "saude": [
-    "promoção da saúde",
-    "práticas corporais e atividades físicas",
-    "mobilidade segura",
-    "cultura de paz",
-    "desenvolvimento sustentável",
-    "enfrentamento do uso do tabaco",
-    "enfrentamento do uso do álcool e drogas",
-    "formação e educação permanente em saúde",
-    "alimentação adequada e saudável",
-    "saúde da criança",
-    "cuidados paliativos",
-    "imunização",
-    "práticas integrativas e complementares em saúde"
+    "Promoção da Saúde",
+    "Práticas Corporais e Atividades Físicas",
+    "Mobilidade Segura",
+    "Cultura de Paz",
+    "Desenvolvimento Sustentável",
+    "Enfrentamento do Uso do Tabaco",
+    "Enfrentamento do Uso do Álcool e Drogas",
+    "Formação e Educação Permanente em Saúde",
+    "Alimentação Adequada e Saudável",
+    "Saúde da Criança",
+    "Cuidados Paliativos",
+    "Imunização",
+    "Práticas Integrativas e Complementares em Saúde"
   ],
   "esporte": [
-    "esporte universitário",
-    "esporte de aventura",
-    "esporte feminino",
-    "racismo no esporte"
+    "Esporte Universitário",
+    "Esporte de Aventura",
+    "Esporte Feminino",
+    "Racismo no Esporte"
   ]
 }
