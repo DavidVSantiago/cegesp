@@ -235,6 +235,164 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // ==========================================
 
+    // POPULAÇÃO DINÂMICA DE UF E MUNICÍPIO (em tempo real)
+
+    /**
+     * Obtém os filtros parciais já selecionados pelo usuário
+     * (política e esfera), para restringir as opções disponíveis.
+     */
+    function obterFiltrosParciais() {
+        const politicaEl = document.querySelector('input[name="politicas"]:checked');
+        const getVal = (el) => el ? (el.value || el.getAttribute("value") || "") : "";
+
+        return {
+            politica: politicaEl ? politicaEl.value : "",
+            esfera: getVal(esferaSelect)
+        };
+    }
+
+    /**
+     * Popula o dropdown de UF com apenas os estados que possuem
+     * documentos cadastrados na planilha para a política/esfera atuais.
+     */
+    function atualizarSelectUF() {
+        if (!ufSelect) return;
+
+        const filtros = obterFiltrosParciais();
+
+        // Filtra os registros compatíveis com política e esfera atuais
+        const registrosCompativeis = acervoPlanilha.filter(item => {
+            const itemPolitica = getValPlanilha(item, "politica_publica", "politica");
+            const itemEsfera = getValPlanilha(item, "esfera");
+
+            if (filtros.politica && normalizarTexto(itemPolitica) !== normalizarTexto(filtros.politica)) return false;
+            if (filtros.esfera && normalizarTexto(itemEsfera) !== normalizarTexto(filtros.esfera)) return false;
+            return true;
+        });
+
+        // Extrai UFs únicas (não vazias) e ordena
+        const ufsUnicas = [...new Set(
+            registrosCompativeis
+                .map(item => getValPlanilha(item, "uf").trim().toUpperCase())
+                .filter(uf => uf !== "")
+        )].sort();
+
+        let optionsHTML = '<option value="" disabled selected>Selecione o Estado</option>';
+
+        if (ufsUnicas.length === 0) {
+            optionsHTML += '<option value="" disabled>Nenhum estado com documentos</option>';
+        } else {
+            ufsUnicas.forEach(uf => {
+                optionsHTML += `<option value="${uf}">${uf}</option>`;
+            });
+        }
+
+        ufSelect.innerHTML = optionsHTML;
+
+        // Reseta o município/território ao trocar as UFs disponíveis
+        atualizarSelectMunicipio();
+        atualizarSelectTerritorio();
+    }
+
+    /**
+     * Popula o dropdown de Município com apenas as cidades que possuem
+     * documentos cadastrados para a política/esfera/UF atuais.
+     */
+    function atualizarSelectMunicipio() {
+        if (!municipioSelect) return;
+
+        const filtros = obterFiltrosParciais();
+        const getVal = (el) => el ? (el.value || el.getAttribute("value") || "") : "";
+        const ufSelecionada = getVal(ufSelect);
+
+        // Se não há UF selecionada, mostra placeholder
+        if (!ufSelecionada) {
+            municipioSelect.innerHTML = '<option value="" disabled selected>Selecione um estado primeiro</option>';
+            return;
+        }
+
+        // Filtra registros compatíveis com política + esfera + UF
+        const registrosCompativeis = acervoPlanilha.filter(item => {
+            const itemPolitica = getValPlanilha(item, "politica_publica", "politica");
+            const itemEsfera = getValPlanilha(item, "esfera");
+            const itemUf = getValPlanilha(item, "uf");
+
+            if (filtros.politica && normalizarTexto(itemPolitica) !== normalizarTexto(filtros.politica)) return false;
+            if (filtros.esfera && normalizarTexto(itemEsfera) !== normalizarTexto(filtros.esfera)) return false;
+            if (ufSelecionada && normalizarTexto(itemUf) !== normalizarTexto(ufSelecionada)) return false;
+            return true;
+        });
+
+        // Extrai municípios únicos (não vazios), capitaliza e ordena
+        const municipiosUnicos = [...new Set(
+            registrosCompativeis
+                .map(item => getValPlanilha(item, "municipio").trim())
+                .filter(m => m !== "")
+        )].sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+        let optionsHTML = '<option value="" disabled selected>Selecione o Município</option>';
+
+        if (municipiosUnicos.length === 0) {
+            optionsHTML += '<option value="" disabled>Nenhum município com documentos</option>';
+        } else {
+            municipiosUnicos.forEach(municipio => {
+                optionsHTML += `<option value="${municipio}">${municipio}</option>`;
+            });
+        }
+
+        municipioSelect.innerHTML = optionsHTML;
+    }
+
+    /**
+     * Popula o dropdown de Território com apenas os territórios que possuem
+     * documentos cadastrados para a política/esfera/UF atuais.
+     */
+    function atualizarSelectTerritorio() {
+        if (!territorioSelect) return;
+
+        const filtros = obterFiltrosParciais();
+        const getVal = (el) => el ? (el.value || el.getAttribute("value") || "") : "";
+        const ufSelecionada = getVal(ufSelect);
+
+        if (!ufSelecionada) {
+            territorioSelect.innerHTML = '<option value="" disabled selected>Selecione um estado primeiro</option>';
+            return;
+        }
+
+        // Filtra registros compatíveis com política + esfera + UF
+        const registrosCompativeis = acervoPlanilha.filter(item => {
+            const itemPolitica = getValPlanilha(item, "politica_publica", "politica");
+            const itemEsfera = getValPlanilha(item, "esfera");
+            const itemUf = getValPlanilha(item, "uf");
+
+            if (filtros.politica && normalizarTexto(itemPolitica) !== normalizarTexto(filtros.politica)) return false;
+            if (filtros.esfera && normalizarTexto(itemEsfera) !== normalizarTexto(filtros.esfera)) return false;
+            if (ufSelecionada && normalizarTexto(itemUf) !== normalizarTexto(ufSelecionada)) return false;
+            return true;
+        });
+
+        // Extrai territórios únicos (não vazios) e ordena
+        const territoriosUnicos = [...new Set(
+            registrosCompativeis
+                .map(item => getValPlanilha(item, "territorio").trim())
+                .filter(t => t !== "")
+        )].sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+        let optionsHTML = '<option value="" disabled selected>Selecione o Território</option>';
+
+        if (territoriosUnicos.length === 0) {
+            optionsHTML += '<option value="" disabled>Nenhum território com documentos</option>';
+        } else {
+            territoriosUnicos.forEach(territorio => {
+                optionsHTML += `<option value="${territorio}">${territorio}</option>`;
+            });
+        }
+
+        territorioSelect.innerHTML = optionsHTML;
+    }
+
+    // ==========================================
+
     // 4. EVENTOS DA INTERFACE
 
     function atualizarCamposFormulario(esferaValue) {
@@ -254,16 +412,26 @@ document.addEventListener("DOMContentLoaded", async function () {
             ufGroup.classList.remove("hidden");
             judiciarioContainer.style.display = "none";
             agendaGrid.setAttribute("cols", "repeat(2, 1fr)");
+            // Atualiza opções de UF em tempo real
+            atualizarSelectUF();
         } else if (esferaNorm === "municipal") {
             ufGroup.classList.remove("hidden");
             agrupamentoGroup.classList.remove("hidden"); 
             judiciarioContainer.style.display = "none";
             agendaGrid.setAttribute("cols", "repeat(2, 1fr)");
+            // Atualiza opções de UF em tempo real
+            atualizarSelectUF();
         }
     }
 
     esferaSelect.addEventListener("algol-change", function (e) {
         atualizarCamposFormulario(e.detail.value);
+    });
+
+    // Quando o usuário seleciona uma UF, atualiza município e território
+    ufSelect.addEventListener("algol-change", function () {
+        atualizarSelectMunicipio();
+        atualizarSelectTerritorio();
     });
 
     agrupamentoRadios.forEach(radio => {
@@ -286,6 +454,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         input.addEventListener("change", function () {
             if (this.checked) {
                 atualizarSelectTemas(this.value);
+                // Ao trocar a política, atualiza também as UFs disponíveis
+                const getVal = (el) => el ? (el.value || el.getAttribute("value") || "") : "";
+                const esferaAtual = getVal(esferaSelect);
+                if (normalizarTexto(esferaAtual) === "estadual" || normalizarTexto(esferaAtual) === "municipal") {
+                    atualizarSelectUF();
+                }
             }
         });
     });
@@ -328,7 +502,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const dados = await carregarDadosPlanilha();
     if (dados) {
-        acervoPlanilha = dados;
+        // Filtra linhas vazias (sem política pública preenchida)
+        acervoPlanilha = dados.filter(item => {
+            const politica = getValPlanilha(item, "politica_publica", "politica");
+            return politica && politica.trim() !== "";
+        });
     }
 
     //Se ja tiver alguma política marcada no carregamento, atualiza os temas
