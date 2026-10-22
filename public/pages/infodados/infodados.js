@@ -237,10 +237,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // POPULAÇÃO DINÂMICA DE UF E MUNICÍPIO (em tempo real)
 
-    /**
-     * Obtém os filtros parciais já selecionados pelo usuário
-     * (política e esfera), para restringir as opções disponíveis.
-     */
+    /*Deve obter os filtros parciais já selecionados pelo usuário
+     (política e esfera), para restringir as opções disponíveis.
+    */
     function obterFiltrosParciais() {
         const politicaEl = document.querySelector('input[name="politicas"]:checked');
         const getVal = (el) => el ? (el.value || el.getAttribute("value") || "") : "";
@@ -251,10 +250,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         };
     }
 
-    /**
-     * Popula o dropdown de UF com apenas os estados que possuem
-     * documentos cadastrados na planilha para a política/esfera atuais.
-     */
+    /* Popula o dropdown de UF com apenas os estados que possuem
+      documentos cadastrados na planilha*/
     function atualizarSelectUF() {
         if (!ufSelect) return;
 
@@ -296,7 +293,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     /**
      * Popula o dropdown de Município com apenas as cidades que possuem
-     * documentos cadastrados para a política/esfera/UF atuais.
+     documentos cadastrados para a política/esfera/UF atuais.
      */
     function atualizarSelectMunicipio() {
         if (!municipioSelect) return;
@@ -345,7 +342,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     /**
      * Popula o dropdown de Território com apenas os territórios que possuem
-     * documentos cadastrados para a política/esfera/UF atuais.
+      documentos cadastrados para a política/esfera/UF atuais.
      */
     function atualizarSelectTerritorio() {
         if (!territorioSelect) return;
